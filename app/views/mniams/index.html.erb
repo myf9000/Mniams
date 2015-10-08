@@ -1,0 +1,10 @@
+<h4>Listing mniams (<%= @mniams.count %>)</h4>
+
+<%= link_to "New", new_mniam_path %>
+<hr>
+<% @mniams.each do |f| %>
+	<%= f.title %>
+	<%= f.description %>
+	<%= link_to "Show", f %>
+	<br>
+<% end %>

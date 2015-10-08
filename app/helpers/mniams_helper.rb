@@ -1,0 +1,2 @@
+module MniamsHelper
+end
