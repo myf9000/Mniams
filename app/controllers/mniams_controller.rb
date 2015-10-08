@@ -6,10 +6,13 @@ class MniamsController < ApplicationController
   end
 
   def show
+    @comments = @mniam.comments.all.order("created_at DESC")
+    @comment = @mniam.comments.build
   end
 
   def destroy
     @mniam.destroy
+    @mniam.comments.destroy
     redirect_to root_path
   end
 

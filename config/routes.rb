@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :mniams
+  
+
+  resources :mniams do
+    resources :comments, :only => [:new, :create]
+  end
 
   root "mniams#index"
 

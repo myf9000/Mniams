@@ -2,6 +2,22 @@
 
 <%= @mniam.title %> 
 <%= @mniam.description %> 
+
+
 <%= link_to "Back", root_path %>
 <%= link_to "Edit", edit_mniam_path(@mniam) %>
 <%= link_to "Delete", mniam_path, method: :delete, data:{confirm: "Are you sure?"} %>
+
+<br>
+<h4>Comment: (<%= @comments.count %>)</h4>
+
+<%= simple_form_for [@mniam, Comment.new] do |f| %>
+  <%= f.input :box %>
+  <%= f.button :submit %>
+<% end %>
+
+<% @comments.each do |f| %>
+	<%= f.box %>
+	<br>
+<% end %>
+
