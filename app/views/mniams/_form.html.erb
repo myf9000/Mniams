@@ -1,4 +1,7 @@
-<%= simple_form_for @mniam do |f| %>
+
+
+<%= simple_form_for @mniam, url: @mniam do |f| %>
+  <%= f.input :avatar, as: :file %>
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.button :submit %>

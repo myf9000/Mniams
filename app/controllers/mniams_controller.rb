@@ -29,7 +29,7 @@ class MniamsController < ApplicationController
   end
 
   def create
-    @mniam = Mniam.new(mniam_params)
+    @mniam = Mniam.create(mniam_params)
     if  @mniam.save 
       redirect_to @mniam, notice: "Eat was created"
     else 
@@ -48,6 +48,6 @@ class MniamsController < ApplicationController
   end
 
   def mniam_params
-    params.require(:mniam).permit(:title, :description)
+    params.require(:mniam).permit(:title, :description, :avatar)
   end
 end
