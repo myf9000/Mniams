@@ -2,8 +2,12 @@ class MniamsController < ApplicationController
   before_action :set_mniam, only: [:show, :destroy, :edit, :update]
 
   def index
+  if params[:tag]
+    @mniams = Mniam.tagged_with(params[:tag])
+  else
     @mniams = Mniam.all
   end
+end
 
   def show
     @comments = @mniam.comments.all.order("created_at DESC")
@@ -48,6 +52,6 @@ class MniamsController < ApplicationController
   end
 
   def mniam_params
-    params.require(:mniam).permit(:title, :description, :avatar)
+    params.require(:mniam).permit(:title, :description, :avatar, :tag_list)
   end
 end

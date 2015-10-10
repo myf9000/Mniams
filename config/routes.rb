@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :mniams do
     resources :comments, :only => [:new, :create]
   end
-
+  get 'tags/:tag', to: 'mniams#index', as: :tag
   root "mniams#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

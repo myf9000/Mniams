@@ -1,5 +1,13 @@
 <h4>Listing mniams (<%= @mniams.count %>)</h4>
 
+<div id="tag_cloud">
+  <% tag_cloud Mniam.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+
+
+<br>
 <%= link_to "New", new_mniam_path %>
 <hr>
 <% @mniams.each do |f| %>
