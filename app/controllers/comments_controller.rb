@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 	def create
-		@mniam = Mniam.find(params[:mniam_id])
+		@mniam = Mniam.friendly.find(params[:mniam_id])
 		@comment = @mniam.comments.create(comment_params)
 		if @comment.save
 			redirect_to :back, notice: "Comment was added..."
