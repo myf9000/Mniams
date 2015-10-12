@@ -12,6 +12,7 @@ end
   def show
     @comments = @mniam.comments.all.order("created_at DESC")
     @comment = @mniam.comments.build
+    @mniam.movie = movie_conventer
   end
 
   def destroy
@@ -45,6 +46,11 @@ end
     @mniam = Mniam.new
   end
 
+  def movie_conventer
+    yt_id = @mniam.movie[@mniam.movie.length-11...@mniam.movie.length]
+    yt = "https://www.youtube.com/embed/" + yt_id
+  end
+
   private 
 
   def set_mniam
@@ -52,6 +58,6 @@ end
   end
 
   def mniam_params
-    params.require(:mniam).permit(:title, :description, :avatar, :tag_list)
+    params.require(:mniam).permit(:title, :description, :avatar, :tag_list, :movie)
   end
 end

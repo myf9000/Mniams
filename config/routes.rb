@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
   
 
+  get 'static_pages/News'
+
+  get 'static_pages/About'
+
+  get 'static_pages/Contact'
+
   resources :mniams do
     resources :comments, :only => [:new, :create]
   end
   get 'tags/:tag', to: 'mniams#index', as: :tag
   root "mniams#index"
+
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
