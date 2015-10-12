@@ -48,7 +48,11 @@ end
 
   def movie_conventer
     yt_id = @mniam.movie[@mniam.movie.length-11...@mniam.movie.length]
-    yt = "https://www.youtube.com/embed/" + yt_id
+    if yt_id.nil?
+      yt = ""
+    else 
+      yt = "https://www.youtube.com/embed/" + yt_id
+    end
   end
 
   private 
