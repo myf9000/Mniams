@@ -5,4 +5,7 @@ class Mniam < ActiveRecord::Base
   	acts_as_taggable_on :content, :name, :tag_list
 	acts_as_taggable
 	validates :title, presence: true
+
+	extend FriendlyId
+  	friendly_id :title, use: :slugged
 end

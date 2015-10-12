@@ -54,10 +54,10 @@ end
   private 
 
   def set_mniam
-    @mniam = Mniam.find(params[:id])
+    @mniam = Mniam.friendly.find(params[:id])
   end
 
   def mniam_params
-    params.require(:mniam).permit(:title, :description, :avatar, :tag_list, :movie)
+    params.require(:mniam).permit(:title, :description, :avatar, :tag_list, :movie, :slug)
   end
 end
