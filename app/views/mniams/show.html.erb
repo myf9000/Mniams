@@ -19,10 +19,7 @@
 <br>
 <h4>Comment: (<%= @comments.count %>)</h4>
 
-<%= simple_form_for [@mniam, Comment.new] do |f| %>
-  <%= f.input :box %>
-  <%= f.button :submit %>
-<% end %>
+<%= render 'comments/comment_form' %>
 
 <% @comments.each do |f| %>
 	<%= f.box %>

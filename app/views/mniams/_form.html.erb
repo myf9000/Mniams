@@ -1,6 +1,6 @@
-<% provide(:title, "") %>
 
 <%= simple_form_for @mniam, url: @mniam do |f| %>
+  <%= render 'shared/errors', :object => @mniam%>
   <%= f.input :avatar, as: :file %>
   <%= f.input :title %>
   <%= f.input :description %>

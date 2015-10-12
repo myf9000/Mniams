@@ -1,0 +1,8 @@
+
+<h1>New comment:</h1>
+
+<%= simple_form_for [@mniam, Comment.new] do |f| %>
+  <%= render 'shared/errors'%>
+  <%= f.input :box %>
+  <%= f.button :submit %>
+<% end %>

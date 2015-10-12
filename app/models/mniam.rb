@@ -4,4 +4,5 @@ class Mniam < ActiveRecord::Base
   	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   	acts_as_taggable_on :content, :name, :tag_list
 	acts_as_taggable
+	validates :title, presence: true
 end
