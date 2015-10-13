@@ -2,12 +2,9 @@ class MniamsController < ApplicationController
   before_action :set_mniam, only: [:show, :destroy, :edit, :update]
 
   def index
-  if params[:tag]
-    @mniams = Mniam.tagged_with(params[:tag])
-  else
-    @mniams = Mniam.all
+    @search = Mniam.search(params[:q])
+    @mniams = @search.result
   end
-end
 
   def show
     @comments = @mniam.comments.all.order("created_at DESC")
@@ -55,8 +52,12 @@ end
     end
   end
 
-  def filtering
-    @mniams = Mniam.all
+  def home
+    if params[:tag]
+      @mniams = Mniam.tagged_with(params[:tag])
+    else
+      @mniams = Mniam.all
+    end
   end
 
   private 

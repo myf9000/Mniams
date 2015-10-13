@@ -6,13 +6,13 @@ Rails.application.routes.draw do
   get 'static_pages/About'
 
   get 'static_pages/Contact'
-  get 'mniams/filtering'
+  get 'mniams/home'
 
   resources :mniams do
     resources :comments, :only => [:new, :create]
   end
-  get 'tags/:tag', to: 'mniams#index', as: :tag
-  root "mniams#index"
+  get 'tags/:tag', to: 'mniams#home', as: :tag
+  root "mniams#home"
 
   
 

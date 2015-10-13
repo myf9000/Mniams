@@ -1,17 +1,8 @@
-<% provide(:title, "Home") %>
-<h4>Listing mniams (<%= @mniams.count %>)</h4>
+<% provide(:title, "Filtering") %>
 
-<div id="tag_cloud">
-  <% tag_cloud Mniam.tag_counts, %w[s m l] do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
-</div>
+<%= render 'filter_form' %>
 
-
-<br>
-<%= link_to "New", new_mniam_path, class: "btn btn-default"  %>
-<%= link_to "Filtering", mniams_filtering_path, class: "btn btn-default"  %>
-
+<h4>Filtering mniams (<%= @mniams.count %>)</h4>
 <hr>
 <% @mniams.each do |f| %>
 	<%= f.title %>
@@ -19,9 +10,5 @@
 	<%= link_to "Show", f, class: "btn btn-default" %>
 	<br>
 <% end %>
-
 <hr>
-<%= link_to "News", static_pages_News_path, class: "btn btn-default" %>
-<%= link_to "About", static_pages_About_path, class: "btn btn-default" %>
-<%= link_to "Contact", static_pages_Contact_path, class: "btn btn-default" %>
-
+<%= link_to "Back", root_path, class: "btn btn-default" %>
