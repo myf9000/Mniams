@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'static_pages/About'
 
   get 'static_pages/Contact'
+  get 'mniams/filtering'
 
   resources :mniams do
     resources :comments, :only => [:new, :create]

@@ -55,6 +55,10 @@ end
     end
   end
 
+  def filtering
+    @mniams = Mniam.all
+  end
+
   private 
 
   def set_mniam

@@ -9,7 +9,9 @@
 
 
 <br>
-<%= link_to "New", new_mniam_path %>
+<%= link_to "New", new_mniam_path, class: "btn btn-default"  %>
+<%= link_to "Filtering", mniams_filtering_path, class: "btn btn-default"  %>
+
 <hr>
 <% @mniams.each do |f| %>
 	<%= f.title %>
