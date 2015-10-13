@@ -27,6 +27,7 @@ gem 'simple_form', '~> 3.2.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem "paperclip", "~> 4.3"
+gem 'ransack', '~> 1.7.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'friendly_id', '~> 5.1.0'
