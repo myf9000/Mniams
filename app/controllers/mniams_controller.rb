@@ -18,7 +18,7 @@ end
   def destroy
     @mniam.destroy
     @mniam.comments.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: "Eat was deleted"
   end
 
   def edit
@@ -62,6 +62,7 @@ end
   end
 
   def mniam_params
-    params.require(:mniam).permit(:title, :description, :avatar, :tag_list, :movie, :slug)
+    params.require(:mniam).permit(:title, :description, :avatar, :tag_list, :movie, :slug, 
+                                 ingredients_attributes: [:id, :name, :_destroy], directions_attributes: [:id, :step, :_destroy])
   end
 end

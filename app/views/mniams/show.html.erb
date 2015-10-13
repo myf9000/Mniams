@@ -12,6 +12,35 @@
 <iframe width="560" height="315" src="<%= @mniam.movie %>" frameborder="0" allowfullscreen></iframe>
 
 <hr>
+
+<div class="row">
+  <div class="col-md-6">
+    <div id="ingredients">
+      <h2>Ingredients</h2>
+      <ul>
+        <% @mniam.ingredients.each do |ingredient| %>
+          <li>
+            <%= ingredient.name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div id="directions">
+      <h2>Directions</h2>
+      <ul>
+        <% @mniam.directions.each do |direction| %>
+          <li>
+            <%= direction.step %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr>
 <%= link_to "Back", root_path, class: "btn btn-default" %>
 <%= link_to "Edit", edit_mniam_path(@mniam), class: "btn btn-default" %>
 <%= link_to "Delete", mniam_path, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %>
