@@ -62,7 +62,7 @@ end
   end
 
   def mniam_params
-    params.require(:mniam).permit(:title, :description, :avatar, :tag_list, :movie, :slug, 
+    params.require(:mniam).permit(:title, :description, :avatar, :tag_list, :movie, :slug, :price, :difficulty, :preparation_time,
                                  ingredients_attributes: [:id, :name, :_destroy], directions_attributes: [:id, :step, :_destroy])
   end
 end

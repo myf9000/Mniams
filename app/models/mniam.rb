@@ -4,8 +4,15 @@ class Mniam < ActiveRecord::Base
   	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   	acts_as_taggable_on :content, :name, :tag_list
 	acts_as_taggable
-	validates :title, :description, :avatar, presence: true
 
+	VALID_REGEX = /[a-zA-Z0-9\s]/
+	
+	validates :title,  presence: true, length: { maximum: 50 }, format: { with: VALID_REGEX }
+	validates :description,  presence: true, length: { maximum: 255 }, format: { with: VALID_REGEX }
+	validates :price, length: { maximum: 3 }, :numericality => true, :allow_blank => true
+	validates :preparation_time, length: { maximum: 3 }, :numericality => true, :allow_blank => true
+	validates :difficulty, presence: true
+	
 	extend FriendlyId
   	friendly_id :title, use: :slugged
 

@@ -6,7 +6,7 @@
   <%= f.input :description, input_html: {class: 'form-control'} %>
   <%= f.input :tag_list, input_html: {class: 'form-control'}%>
   <%= f.input :movie, input_html: {class: 'form-control'}%>
-
+  <hr>
   <h3>Ingredients</h3>
   <div id="ingredient">
     <%= f.simple_fields_for :ingredients do |i| %>
@@ -26,5 +26,11 @@
       <%= link_to_add_association 'add direction', f, :directions, class: "btn btn-default add-button" %>
     </div>
   </div>
+  <hr>
+  <%= f.input :price, input_html: {class: 'form-control'}%>
+  <%= f.input :difficulty, input_html: {class: 'form-control'}%>
+  <%= f.input :preparation_time, input_html: {class: 'form-control'}%>
+
+
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>

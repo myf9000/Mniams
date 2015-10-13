@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013102108) do
+ActiveRecord::Schema.define(version: 20151013115803) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "box"
@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 20151013102108) do
     t.datetime "avatar_updated_at"
     t.string   "movie"
     t.string   "slug"
+    t.integer  "price"
+    t.string   "difficulty"
+    t.integer  "preparation_time"
   end
 
   add_index "mniams", ["slug"], name: "index_mniams_on_slug", unique: true
