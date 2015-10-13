@@ -28,9 +28,11 @@
   </div>
   <hr>
   <%= f.input :price, input_html: {class: 'form-control'}%>
-  <%= f.input :difficulty, input_html: {class: 'form-control'}%>
   <%= f.input :preparation_time, input_html: {class: 'form-control'}%>
-
+  <b>Difificulty </b>
+  <%= f.select :difficulty, [ 'Easy', 'Medium', 'Hard'], :prompt => 'Select One', input_html: {class: 'form-control'} %>
+  <b>Type </b>
+  <%= f.select :typ, [ 'Dinner', 'Breakfast', 'Lunch', 'Snack', 'Diet', 'Dessert'], :prompt => 'Select One', input_html: {class: 'form-control'} %>
 
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>

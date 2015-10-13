@@ -11,7 +11,7 @@ class Mniam < ActiveRecord::Base
 	validates :description,  presence: true, length: { maximum: 255 }, format: { with: VALID_REGEX }
 	validates :price, length: { maximum: 3 }, :numericality => true, :allow_blank => true
 	validates :preparation_time, length: { maximum: 3 }, :numericality => true, :allow_blank => true
-	validates :difficulty, presence: true
+	validates :difficulty, :typ, presence: true
 	
 	extend FriendlyId
   	friendly_id :title, use: :slugged

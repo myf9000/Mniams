@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013115803) do
+ActiveRecord::Schema.define(version: 20151013132941) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "box"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20151013115803) do
     t.integer  "price"
     t.string   "difficulty"
     t.integer  "preparation_time"
+    t.string   "typ"
   end
 
   add_index "mniams", ["slug"], name: "index_mniams_on_slug", unique: true
