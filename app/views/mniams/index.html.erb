@@ -14,12 +14,12 @@
 <% @mniams.each do |f| %>
 	<%= f.title %>
 	<%= f.description %>
-	<%= link_to "Show", f %>
+	<%= link_to "Show", f, class: "btn btn-default" %>
 	<br>
 <% end %>
 
 <hr>
-<%= link_to "News", static_pages_News_path %>
-<%= link_to "About", static_pages_About_path %>
-<%= link_to "Contact", static_pages_Contact_path %>
+<%= link_to "News", static_pages_News_path, class: "btn btn-default" %>
+<%= link_to "About", static_pages_About_path, class: "btn btn-default" %>
+<%= link_to "Contact", static_pages_Contact_path, class: "btn btn-default" %>
 

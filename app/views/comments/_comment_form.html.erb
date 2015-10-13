@@ -3,6 +3,6 @@
 
 <%= simple_form_for [@mniam, Comment.new] do |f| %>
   <%= render 'shared/errors'%>
-  <%= f.input :box %>
-  <%= f.button :submit %>
+  <%= f.input :box, input_html: {class: 'form-control'} %>
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>

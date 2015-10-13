@@ -12,9 +12,9 @@
 <iframe width="560" height="315" src="<%= @mniam.movie %>" frameborder="0" allowfullscreen></iframe>
 
 <hr>
-<%= link_to "Back", root_path %>
-<%= link_to "Edit", edit_mniam_path(@mniam) %>
-<%= link_to "Delete", mniam_path, method: :delete, data:{confirm: "Are you sure?"} %>
+<%= link_to "Back", root_path, class: "btn btn-default" %>
+<%= link_to "Edit", edit_mniam_path(@mniam), class: "btn btn-default" %>
+<%= link_to "Delete", mniam_path, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %>
 
 <br>
 <h4>Comment: (<%= @comments.count %>)</h4>
