@@ -14,12 +14,19 @@ class MniamsController < ApplicationController
   end
 
   def destroy
-    @mniam.destroy
-    @mniam.comments.destroy
-    redirect_to root_path, notice: "Eat was deleted"
+    if @mniam.user != current_user
+      render 'unprivileged_request'
+    else
+      @mniam.destroy
+      @mniam.comments.destroy
+      redirect_to root_path, notice: "Eat was deleted"
+    end
   end
 
   def edit
+    if @mniam.user != current_user
+      render 'unprivileged_request'
+    end
   end
 
   def update
