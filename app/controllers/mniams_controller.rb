@@ -1,5 +1,6 @@
 class MniamsController < ApplicationController
   before_action :set_mniam, only: [:show, :destroy, :edit, :update]
+  before_action :authenticate_user!, except: [:show, :home]
 
   def index
     @search = Mniam.search(params[:q])
@@ -31,7 +32,7 @@ class MniamsController < ApplicationController
   end
 
   def create
-    @mniam = Mniam.create(mniam_params)
+    @mniam = current_user.mniams.build(mniam_params)
     if  @mniam.save 
       redirect_to @mniam, notice: "Eat was created"
     else 
@@ -40,7 +41,7 @@ class MniamsController < ApplicationController
   end
 
   def new
-    @mniam = Mniam.new
+    @mniam = current_user.mniams.build
   end
 
   def movie_conventer

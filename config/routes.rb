@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  devise_for :users
   get 'static_pages/News'
 
   get 'static_pages/About'
