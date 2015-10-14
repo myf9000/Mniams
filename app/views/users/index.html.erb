@@ -1,0 +1,11 @@
+<% provide(:title, "Users") %>
+<hr>
+
+<% @users.each do |user| %>
+	<%= user.email %>
+	<%= link_to "Show", user, class: "btn btn-default" %>
+	<br>
+<% end %>
+
+<hr>
+<%= link_to "Back", root_path, class: "btn btn-default" %>
