@@ -2,6 +2,8 @@
 <hr>
 
 <%= @user.email %>
+<%= @user.name %>
+<li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
 <hr>
 
 <% @mniams.each do |f| %>
