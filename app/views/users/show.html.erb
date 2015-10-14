@@ -4,7 +4,9 @@
 <%= @user.email %>
 <%= @user.name %>
 <%= image_tag @user.user_avatar.url(:medium) %>
-<li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+<% if @user == current_user %>
+	<li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+<% end %>
 <hr>
 
 <% @mniams.each do |f| %>

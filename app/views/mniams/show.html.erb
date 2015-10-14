@@ -6,7 +6,7 @@
 <%= @mniam.title %> 
 <%= @mniam.description %> 
 <br>
-<p> Created at: <%= @mniam.user.email %> </p>
+<p> Created at: <%= @mniam.user.email %> <%= link_to "Show", @mniam.user, class: "btn btn-default" %></p>
 
 <%= image_tag @mniam.avatar.url(:thumb) %>
 <br>
