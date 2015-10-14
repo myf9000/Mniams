@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :search_user, only: [:show, :destroy]
+	before_action :authenticate_user!
 	def show
 	end
 
@@ -19,6 +20,6 @@ class UsersController < ApplicationController
 
   	def search_user
   		@user = User.find(params[:id])
-  		@user.destroy
+  		@mniams = @user.mniams
   	end
 end
