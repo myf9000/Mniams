@@ -29,6 +29,7 @@ gem 'simple_form', '~> 3.2.0'
 gem "paperclip", "~> 4.3"
 gem 'ransack', '~> 1.7.0'
 gem 'devise'
+gem 'acts_as_votable', '~> 0.10.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'friendly_id', '~> 5.1.0'

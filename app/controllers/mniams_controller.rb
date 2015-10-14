@@ -1,5 +1,5 @@
 class MniamsController < ApplicationController
-  before_action :set_mniam, only: [:show, :destroy, :edit, :update]
+  before_action :set_mniam, only: [:show, :destroy, :edit, :update, :upvote]
   before_action :authenticate_user!, except: [:show, :home]
 
   def index
@@ -67,6 +67,11 @@ class MniamsController < ApplicationController
       @mniams = Mniam.all
     end
   end
+
+  def upvote 
+    @mniam.upvote_by current_user
+    redirect_to :back
+  end  
 
   private 
 

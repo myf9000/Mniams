@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get 'mniams/home'
 
   resources :mniams do
+    member do
+      put "like", to: "mniams#upvote"
+    end
     resources :comments, :only => [:new, :create]
   end
   get 'tags/:tag', to: 'mniams#home', as: :tag
