@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
 
   devise_for :users
-  resources :users, :only => [:show, :index]
+  resources :users, :only => [:show, :index, :destroy]
   get 'static_pages/News'
 
   get 'static_pages/About'
