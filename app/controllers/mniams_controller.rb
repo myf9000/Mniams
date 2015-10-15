@@ -70,7 +70,7 @@ class MniamsController < ApplicationController
 
   def upvote 
     @mniam.upvote_by current_user
-    redirect_to :back
+    redirect_to :back, notice: "You like this Mniams :)"
   end  
 
   private 

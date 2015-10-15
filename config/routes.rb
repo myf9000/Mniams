@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
+  devise_for :users do
+  delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
+end
 
-  devise_for :users
   resources :users, :only => [:show, :index, :destroy]
   get 'static_pages/News'
 
