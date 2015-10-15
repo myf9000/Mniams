@@ -1,6 +1,8 @@
 <% provide(:title, "Users") %>
 <hr>
 
+<%= will_paginate @posts %>
+<br>
 <% @users.each do |user| %>
 	<%= user.email %>
 	<%= link_to "Show", user, class: "btn btn-default" %>
