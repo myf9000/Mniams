@@ -8,8 +8,6 @@ class MniamsController < ApplicationController
   end
 
   def show
-    @comments = @mniam.comments.all.order("created_at DESC")
-    @comment = @mniam.comments.build
     @mniam.movie = movie_conventer
   end
 
