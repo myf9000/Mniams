@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'comments/create'
+  
 
   devise_for :users do
   delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session

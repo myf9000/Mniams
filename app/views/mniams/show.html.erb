@@ -68,14 +68,20 @@
 
 <hr>
 <% if user_signed_in? %>
+<div class="well">
   <h4>Comment: (<%= @comments.count %>)</h4>    
      
   <%= render 'comments/comment_form' %>    
 
-  <% @comments.each do |f| %>   
-   <%= f.author_email %> 
-   <%= f.body %>    
+<hr>
+  <% @comments.each do |f| %>
+  <p class="text-muted">Added by <strong><%= f.author_email %></strong> on
+    <%= l(f.created_at, format: '%B, %d %Y %H:%M:%S') %></p>   
+   
+   <blockquote>
+    <p><%= f.body %></p>
+  </blockquote>
    <br>    
   <% end %>
 <%end%>
-
+</div>
