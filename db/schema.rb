@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014113916) do
+ActiveRecord::Schema.define(version: 20151015173829) do
 
   create_table "comments", force: :cascade do |t|
-    t.text     "box"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "mniam_id"
+    t.string   "author_email"
   end
-
-  add_index "comments", ["mniam_id"], name: "index_comments_on_mniam_id"
 
   create_table "directions", force: :cascade do |t|
     t.text     "step"
@@ -114,10 +114,12 @@ ActiveRecord::Schema.define(version: 20151014113916) do
     t.integer  "user_avatar_file_size"
     t.datetime "user_avatar_updated_at"
     t.boolean  "admin",                    default: false
+    t.string   "slug"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"
