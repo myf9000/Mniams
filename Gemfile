@@ -32,12 +32,15 @@ gem "paperclip", "~> 4.3"
 gem 'ransack', '~> 1.7.0'
 gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'shareable'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'friendly_id', '~> 5.1.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bootstrap-sass', '~> 3.3.5.1'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

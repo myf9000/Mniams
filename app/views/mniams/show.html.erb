@@ -77,6 +77,11 @@
   <%= link_to "favorite",   favorite_mniam_path(@mniam, type: "favorite"), method: :put %>
 <% end %>
 <hr>
+<p><%= render_shareable :buttons=> ['twitter', 'facebook', 'google_plus', 'pinterest']  %></p>
+<hr>
+<%= link_to "Create PDF document", show_path(@mniam, :format => :pdf) %>
+
+<hr>
 <% if user_signed_in? %>
 <div class="well">
   <h4>Comment: (<%= @comments.count %>)</h4>    

@@ -17,6 +17,13 @@ class MniamsController < ApplicationController
       @rank += f.get_upvotes.size
     end
     @mniam.movie = movie_conventer
+
+     respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "show",:layout => 'pdf.html.erb',:template => '/mniams/show'  # Excluding ".pdf" extension.
+      end
+    end
   end
 
   def destroy
