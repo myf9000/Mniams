@@ -1,0 +1,13 @@
+<h2>Add your vote to the BEST meal for Week!</h2>
+<p>help us and choose the best Mniams!</p>
+
+<hr>
+<% @mniams.each do |f| %>
+	<%= f.title %>
+	<%= f.description %>
+	<%= link_to "Show", f, class: "btn btn-default" %>
+	<br>
+<% end %>
+<hr>
+
+<%= link_to "Back", root_path, class: "btn btn-default" %>

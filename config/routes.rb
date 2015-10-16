@@ -24,8 +24,9 @@ end
   get 'tags/:tag', to: 'mniams#home', as: :tag
   root "mniams#home"
 
-  get '/download_pdf(.:format)' => 'mniams#show', :method => :get, :as=>:show
+  get '/download_pdf/:id(.:format)' => 'mniams#show', :method => :get, :as=>:show
 
+  get 'top' => 'mniams#top', :as => :top
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

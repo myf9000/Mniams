@@ -86,7 +86,7 @@ class MniamsController < ApplicationController
     redirect_to :back, notice: "You like this Mniams :)"
   end  
 
-   def favorite
+  def favorite
     type = params[:type]
     if type == "favorite"
         current_user.favorites << @mniam
@@ -101,6 +101,11 @@ class MniamsController < ApplicationController
 
   def favorite_list
     @mniams = current_user.favorites
+  end
+
+  def top
+    @mniams = Mniam.all.order(@rank)   
+    @mniams = @mniams[0...4] 
   end
 
   private 
