@@ -6,7 +6,7 @@
 <%= @mniam.title %> 
 <%= @mniam.description %> 
 <br>
-<p> Created at: <%= @mniam.user.email %> <%= link_to "Show", @mniam.user, class: "btn btn-default" %></p>
+<p> Created at: <%= @mniam.user.email %> | <b>Score: (<%= @rank =%>)</b> | <%= link_to "Show", @mniam.user, class: "btn btn-default" %></p>
 
 <%= image_tag @mniam.avatar.url(:thumb) %>
 <br>
@@ -51,7 +51,7 @@
   <br>
   Type: <%=@mniam.typ %> </p>
 <hr>
-<%= link_to "Back", root_path, class: "btn btn-default" %>
+<%= link_to "Back", :back, class: "btn btn-default" %>
 <% if @mniam.user == current_user %>
   <%= link_to "Edit", edit_mniam_path(@mniam), class: "btn btn-default" %>
   <%= link_to "Delete", mniam_path, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %>

@@ -10,6 +10,12 @@ class MniamsController < ApplicationController
   def show
     @comments = @mniam.comments.all.order("created_at DESC")    
     @comment = @mniam.comments.build
+    @mniams = Mniam.all
+    @rank = 0
+    @user = User.find(@mniam.user.id)
+    @user.mniams.each do |f|
+      @rank += f.get_upvotes.size
+    end
     @mniam.movie = movie_conventer
   end
 
