@@ -28,4 +28,8 @@ class Mniam < ActiveRecord::Base
  	accepts_nested_attributes_for :directions,
 								 	reject_if: proc { |attributes| attributes['step'].blank? },
 								  	allow_destroy: true
+
+	def related(mniam)
+		mniams = Mniam.all.select {|i| i.typ == mniam.typ and i.id != mniam.id}
+	end
 end

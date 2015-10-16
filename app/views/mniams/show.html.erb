@@ -5,9 +5,15 @@
 
 <%= @mniam.title %> 
 <%= @mniam.description %> 
+<p> Created at: <%= @mniam.user.email %> | <b>Score: (<%= @rank =%>)</b> | <%= link_to "Show", @mniam.user, class: "btn btn-default" %>
+<% if user_signed_in? %>
+  <%= link_to like_mniam_path(@mniam), method: :put do %>
+    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+    <%= @mniam.get_upvotes.size %>
+  <% end %>
+<%end%>
+</p>
 <br>
-<p> Created at: <%= @mniam.user.email %> | <b>Score: (<%= @rank =%>)</b> | <%= link_to "Show", @mniam.user, class: "btn btn-default" %></p>
-
 <%= image_tag @mniam.avatar.url(:thumb) %>
 <br>
 
@@ -56,15 +62,14 @@
   <%= link_to "Edit", edit_mniam_path(@mniam), class: "btn btn-default" %>
   <%= link_to "Delete", mniam_path, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %>
 <%end%>
+<hr>
 
-<br>
-<% if user_signed_in? %>
-  <%= link_to like_mniam_path(@mniam), method: :put do %>
-    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-    <%= @mniam.get_upvotes.size %>
-  <% end %>
-<%end%>
-<br>
+<h3> Related Mniams: </h3>
+<% @mniam.related(@mniam).each do |f| %>
+  <%= f.title %>
+  <%= f.description %>
+  <%= link_to "Show", f, class: "btn btn-default" %>
+<% end %>
 
 <hr>
 <% if user_signed_in? %>
@@ -81,7 +86,8 @@
    <blockquote>
     <p><%= f.body %></p>
   </blockquote>
-   <br>    
+   
+   <hr>
   <% end %>
 <%end%>
 </div>
