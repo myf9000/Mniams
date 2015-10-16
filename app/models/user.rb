@@ -8,4 +8,15 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_attached_file :user_avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :user_avatar, content_type: /\Aimage\/.*\Z/
+
+
+  def score(user)
+    mniams = Mniam.all
+    rank = 0
+    user.mniams.each do |f|
+	     rank += f.get_upvotes.size
+	  end
+    return rank
+  end
+
 end

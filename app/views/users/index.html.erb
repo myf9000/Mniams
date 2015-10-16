@@ -3,13 +3,14 @@
 
 <%= will_paginate @posts %>
 <br>
-<% @users.each do |user| %>
-	<%= user.email %>
-	<b>Rank (<%= @rank =%>)</b>
+
+<% @users.each_with_index do |user, index| %>
+	<p><%=index+1%>. <%= user.email %>
+	<b>Score: (<%= user.score(user) =%>)</b>
 	<%= link_to "Show", user, class: "btn btn-default" %>
 	<% if current_user.admin? %>
   		<%= link_to "Delete", user, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %>
-	<%end%>
+	<%end%> </p>
 	<br>
 <% end %>
 
