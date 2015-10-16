@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_attached_file :user_avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :user_avatar, content_type: /\Aimage\/.*\Z/
 
+  has_many :favorite_recipes  
+  has_many :favorites, through: :favorite_recipes, source: :mniam
 
   def score(user)
     mniams = Mniam.all

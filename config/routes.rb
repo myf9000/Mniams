@@ -13,8 +13,9 @@ end
 
   get 'static_pages/Contact'
   get 'mniams/home'
-
+   get 'mniams/favorite_list'
   resources :mniams do
+    put :favorite, on: :member
     member do
       put "like", to: "mniams#upvote"
     end

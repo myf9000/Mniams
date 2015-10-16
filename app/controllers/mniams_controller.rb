@@ -1,5 +1,5 @@
 class MniamsController < ApplicationController
-  before_action :set_mniam, only: [:show, :destroy, :edit, :update, :upvote]
+  before_action :set_mniam, only: [:show, :destroy, :edit, :update, :upvote, :favorite]
   before_action :authenticate_user!, except: [:show, :home]
 
   def index
@@ -78,6 +78,23 @@ class MniamsController < ApplicationController
     @mniam.upvote_by current_user
     redirect_to :back, notice: "You like this Mniams :)"
   end  
+
+   def favorite
+    type = params[:type]
+    if type == "favorite"
+        current_user.favorites << @mniam
+        redirect_to :back, notice: 'You favorited this mniams'
+    elsif type == "unfavorite"
+      current_user.favorites.delete(@mniam)
+      redirect_to :back, notice: 'Unfavorited this mnians'
+    else
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+  end
+
+  def favorite_list
+    @mniams = current_user.favorites
+  end
 
   private 
 

@@ -1,0 +1,15 @@
+<% provide(:title, "Favorites") %>
+<h4>Your favorites list (<%= @mniams.count %>)</h4>
+<hr>
+<% @mniams.each do |f| %>
+	<%= f.title %>
+	<%= f.description %>
+	<%= link_to "Show", f, class: "btn btn-default" %>
+	<%= link_to "Unfavorite", favorite_mniam_path(f, type: "unfavorite"), method: :put, class: "btn btn-default" %>
+	<br>
+<% end %>
+
+<hr>
+
+<%= link_to "Back", root_path, class: "btn btn-default" %>
+

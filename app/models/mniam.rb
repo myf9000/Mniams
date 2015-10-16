@@ -21,6 +21,9 @@ class Mniam < ActiveRecord::Base
   	has_many :ingredients
   	has_many :directions
 
+  	has_many :favorite_recipes  
+    has_many :favorited_by, through: :favorite_recipes, source: :mniam 
+
   	accepts_nested_attributes_for :ingredients,
 								  	reject_if: proc { |attributes| attributes['name'].blank? },
 								  	allow_destroy: true
@@ -32,4 +35,5 @@ class Mniam < ActiveRecord::Base
 	def related(mniam)
 		mniams = Mniam.all.select {|i| i.typ == mniam.typ and i.id != mniam.id}
 	end
+
 end
