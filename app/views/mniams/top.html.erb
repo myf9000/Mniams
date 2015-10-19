@@ -1,11 +1,10 @@
-<h2>Add your vote to the BEST meal for Week!</h2>
-<p>Help us and choose the best Mniams!</p>
-<h4>This is war!</h4>
+<h2>The BEST meal for Week!</h2>
 
 <hr>
 <% @mniams.each do |f| %>
 	<%= f.title %>
 	<%= f.description %>
+	<b>(<%= f.score(f) %>)</b>
 	<%= link_to "Show", f, class: "btn btn-default" %>
 	
 	<br>
