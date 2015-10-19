@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   	 @comment = Comment.new(parent_id: params[:parent_id]) 
      @comment.author = current_user.email
      @comment.user_id = current_user.id
-     @comment.mniam_id = @mniam.id
+     @comment.mniam_id = Comment.find(params[:parent_id]).mniam_id
   end
 
   def create 
@@ -14,13 +14,10 @@ class CommentsController < ApplicationController
       @comment = parent.children.build(comment_params)
       @comment.author = current_user.email
       @comment.user_id = current_user.id
-      @comment.mniam_id = @mniam.id
     else
-      @mniam = Mniam.friendly.find(params[:mniam_id])
-      @comment = @mniam.comments.build(comment_params)
+      @comment = Comment.new(comment_params)
       @comment.author = current_user.email
       @comment.user_id = current_user.id
-      @comment.mniam_id = @mniam.id
     end
 
     if @comment.save
