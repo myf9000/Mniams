@@ -82,22 +82,29 @@
 <%= link_to "Create PDF document", show_path(@mniam, :format => :pdf) %>
 
 <hr>
-<% if user_signed_in? %>
-<div class="well">
-  <h4>Comment: (<%= @comments.count %>)</h4>    
-     
-  <%= render 'comments/comment_form' %>    
 
-<hr>
-  <% @comments.each do |f| %>
-  <p class="text-muted">Added by <strong><%= f.author_email %></strong> on
-    <%= l(f.created_at, format: '%B, %d %Y %H:%M:%S') %></p>   
-   
-   <blockquote>
-    <p><%= f.body %></p>
-  </blockquote>
-   
-   <hr>
+<h4><b>Comments: (<%= @comments.count %>)</b></h4>
+Add a comment!
+<%= form_for @comment do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-<%end%>
-</div>
+
+  <%= f.hidden_field :parent_id %>
+  <div class="form-group">
+    
+    <%= f.text_area :body, class: 'form-control', required: true %>
+  </div>
+
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>
+<hr>
+<%= comments_tree_for @comments %>

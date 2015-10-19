@@ -1,0 +1,13 @@
+if ("<%= @comment.parent_id %>") {
+    $('.comment_<%= @comment.parent_id %>').append("<%= escape_javascript(render partial: 'comment', locals: { comment: @comment } ) %>");
+
+    $("#replyto_<%= @comment.parent_id %>").val('');
+    $("#replyto_<%= @comment.parent_id %>").toggle();
+}
+else {
+$('#comments').append("<%= escape_javascript(render partial: 'comment', locals: { comment: @comment } ) %>");
+
+    if ("<%= @comment.body %>") {
+        $("#comment_body").val('');
+    }
+}

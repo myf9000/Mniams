@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
-	belongs_to :mniam	
-	belongs_to :user	
-	validates :mniam, presence: true		
- 	validates :body, presence: true
+	#attr_accessible :title, :body, :author
+	acts_as_tree order: 'created_at DESC'
+	belongs_to :user
+	belongs_to :mniam
 end

@@ -1,6 +1,6 @@
 class MniamsController < ApplicationController
   before_action :set_mniam, only: [:show, :destroy, :edit, :update, :upvote, :favorite]
-  before_action :authenticate_user!, except: [:show, :home]
+  before_action :authenticate_user!, except: [:home]
 
   def index
     @search = Mniam.search(params[:q])
@@ -8,8 +8,9 @@ class MniamsController < ApplicationController
   end
 
   def show
-    @comments = @mniam.comments.all.order("created_at DESC")    
-    @comment = @mniam.comments.build
+    @comments = @mniam.comments.hash_tree
+    @comment = @mniam.comments.build(parent_id: params[:parent_id])
+    @comment.mniam_id = @mniam.id
     @mniams = Mniam.all
     @rank = 0
     @user = User.find(@mniam.user.id)

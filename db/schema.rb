@@ -11,16 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016183639) do
+ActiveRecord::Schema.define(version: 20151019194453) do
+
+  create_table "comment_hierarchies", id: false, force: :cascade do |t|
+    t.integer "ancestor_id",   null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations",   null: false
+  end
+
+  add_index "comment_hierarchies", ["ancestor_id", "descendant_id", "generations"], name: "comment_anc_desc_udx", unique: true
+  add_index "comment_hierarchies", ["descendant_id"], name: "comment_desc_idx"
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "user_id"
+    t.string   "title"
+    t.string   "author"
     t.text     "body"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "parent_id"
     t.integer  "mniam_id"
-    t.string   "author_email"
+    t.integer  "user_id"
   end
+
+  add_index "comments", ["mniam_id"], name: "index_comments_on_mniam_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "directions", force: :cascade do |t|
     t.text     "step"
@@ -127,12 +141,6 @@ ActiveRecord::Schema.define(version: 20151016183639) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true
-
-  create_table "vote_for_meals", force: :cascade do |t|
-    t.integer  "mniam_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"
