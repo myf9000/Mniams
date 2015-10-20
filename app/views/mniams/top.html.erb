@@ -1,7 +1,8 @@
 <h2>The BEST meal for Week!</h2>
 
 <hr>
-<% @mniams.each do |f| %>
+<% @mniams.each_with_index do |f, index| %>
+	<%= index +=1 %>.
 	<%= f.title %>
 	<%= f.description %>
 	<b>(<%= f.score(f) %>)</b>

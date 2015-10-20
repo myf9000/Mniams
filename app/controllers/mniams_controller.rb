@@ -106,7 +106,7 @@ class MniamsController < ApplicationController
 
   def top
     @mniams = Mniam.all.order(@rank)   
-    @mniams = @mniams[0...4] 
+    @mniams = @mniams[0...5] 
   end
 
   private 
