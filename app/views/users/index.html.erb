@@ -8,6 +8,8 @@
 	<p><%=index+1%>. <%= user.email %>
 	<b>Score: (<%= user.score(user) =%>)</b>
 	<%= link_to "Show", user, class: "btn btn-default" %>
+	<%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
+                              "data-sid" => current_user.id, "data-rip" => user.id %>
 	<% if current_user.admin? %>
   		<%= link_to "Delete", user, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %>
 	<%end%> </p>
@@ -17,3 +19,30 @@
 
 <hr>
 <%= link_to "Back", root_path, class: "btn btn-default" %>
+<hr> 
+<h3>Your Conversations</h3>
+
+    <div style="height: 400px; overflow-y: auto;">
+      <% if @conversations.any? %>
+          <ul class="media-list">
+            <% @conversations.each do |conversation| %>
+                <li class="media">
+                  <%= image_tag("http://placehold.it/50x50", class: "media-object pull-left") %>
+                  <div class="media-body">
+                  <%=User.find(conversation.sender_id).email%>  
+                    <%= link_to "Reply", conversation_path(conversation), class: "conversation", "data-cid" => conversation.id %>
+                        <h4 class="media-heading"><%= conversation_interlocutor(conversation).name %></h4>
+                        <p><%= conversation.messages.last.nil? ? "No messages" : truncate(conversation.messages.last.body, length: 45) %></p>
+                  </div>
+                </li>
+
+            <% end %>
+          </ul>
+      <% else %>
+          <p>You have no conversations. Click send message with any user to create one.</p>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="col-md-4">

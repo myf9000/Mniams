@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020084936) do
+ActiveRecord::Schema.define(version: 20151020114051) do
 
   create_table "comment_hierarchies", id: false, force: :cascade do |t|
     t.integer "ancestor_id",   null: false
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20151020084936) do
 
   add_index "comments", ["mniam_id"], name: "index_comments_on_mniam_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id"
+  add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id"
 
   create_table "directions", force: :cascade do |t|
     t.text     "step"
@@ -72,6 +82,17 @@ ActiveRecord::Schema.define(version: 20151020084936) do
   end
 
   add_index "ingredients", ["mniam_id"], name: "index_ingredients_on_mniam_id"
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
   create_table "mniams", force: :cascade do |t|
     t.string   "title"

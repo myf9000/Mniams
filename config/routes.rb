@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  
+  resources :conversations do
+    resources :messages
+  end
 
   devise_for :users do
   delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
