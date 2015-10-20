@@ -15,6 +15,23 @@
 	<%= link_to "Show", f, class: "btn btn-default" %>
 	<br>
 <% end %>
+<hr>
+<div class="stats">
+  <a href="<%= following_user_path(@user) %>">
+    <strong id="following" class="stat">
+      <%= @user.following.count %>
+    </strong>
+    following
+  </a>
+  <a href="<%= followers_user_path(@user) %>">
+    <strong id="followers" class="stat">
+      <%= @user.followers.count %>
+    </strong>
+    followers
+  </a>
+</div>
+<hr>
+<%= render 'follow_form' if signed_in? %>
 
 <hr>
 <%= link_to "Back", users_path, class: "btn btn-default" %>

@@ -6,12 +6,17 @@ Rails.application.routes.draw do
   delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
 end
 
-  resources :users, :only => [:show, :index, :destroy]
+  resources :users, :only => [:show, :index, :destroy] do
+    member do
+      get :following, :followers
+    end
+  end
+
   get 'static_pages/News'
 
   get 'static_pages/About'
  
-
+resources :relationships,       only: [:create, :destroy]
   get 'static_pages/Contact'
   get 'mniams/home'
    get 'mniams/favorite_list'

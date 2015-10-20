@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :search_user, only: [:show, :destroy]
+	before_action :search_user, only: [:show, :destroy, :following, :followers]
 	before_action :authenticate_user!
 	def show
 	end
@@ -16,6 +16,19 @@ class UsersController < ApplicationController
 	  		end
 	    end
   	end
+
+  	
+  def following
+    @title = "Following"
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
 
   	private
 
