@@ -30,6 +30,10 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def feed
+  	@feed_items = current_user.feed.paginate(page: params[:page])
+  end
+
   	private
 
   	def search_user

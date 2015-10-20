@@ -31,7 +31,11 @@
   </a>
 </div>
 <hr>
-<%= render 'follow_form' if signed_in? %>
+<%= render 'follow_form' if signed_in? %> 
 
+<% if @user == current_user %>
+<br>
+  <%= link_to "Feed list", feed_list_path, class: "btn btn-default" %>
+<% end %>
 <hr>
 <%= link_to "Back", users_path, class: "btn btn-default" %>

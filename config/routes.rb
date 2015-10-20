@@ -32,6 +32,8 @@ resources :relationships,       only: [:create, :destroy]
 get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
   get '/download_pdf/:id(.:format)' => 'mniams#show', :method => :get, :as=>:show
 
+
+  get 'feed' => 'users#feed', :as => :feed_list
   get 'top' => 'mniams#top', :as => :top
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

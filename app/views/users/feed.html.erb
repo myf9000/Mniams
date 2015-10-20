@@ -1,0 +1,10 @@
+<hr>
+
+<% @feed_items.each do |f| %>
+	<%= f.title %>
+	<%= f.description %>
+	<%= link_to "Show", f, class: "btn btn-default" %>
+	<br>
+<% end %>
+<hr>
+<%= link_to "Back", users_path, class: "btn btn-default" %>
