@@ -10,10 +10,18 @@
 
 
 <hr>
-<% @mniams.each do |f| %>
-	<%= f.title %>
-	<%= f.description %>
-	<%= link_to "Show", f, class: "btn btn-default" %>
-	<br>
-<% end %>
 
+
+<div id="wrapper">
+	<div id="columns">
+	<% @mniams.each do |f| %>
+		<div class="pin">
+			<%= link_to (image_tag f.avatar.url), f %>
+			<p>
+				<div class="panel-footer"><%= f.title %></div>
+  				<div class="panel-body"><%= f.typ %></div>
+			</p>
+		</div>
+	<% end %>
+	</div>
+</div>

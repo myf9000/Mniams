@@ -4,7 +4,7 @@
 <%= will_paginate @posts %>
 <br>
 
-<% @users.each_with_index do |user, index| %>
+<% @users.each_with_index do |user, index| %>   <!-- tutaj cos ze scope - rankigniem zle -->
 	<p><%=index+1%>. <%= user.email %>
 	<%= link_to "Show", user, class: "btn btn-default" %>
 	<%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
