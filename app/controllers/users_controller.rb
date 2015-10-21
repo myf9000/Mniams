@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
 	def index 
 		@user = User.first
-		@users = User.paginate(:page => params[:page], :per_page => 2).order(@user.score(@user))   
+		@users = User.paginate(:page => params[:page], :per_page => 2)  
     @conversations = Conversation.involving(current_user).order("created_at DESC") 
 	end
 
