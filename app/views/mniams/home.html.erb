@@ -11,17 +11,17 @@
 
 <hr>
 
-
-<div id="wrapper">
-	<div id="columns">
-	<% @mniams.each do |f| %>
-		<div class="pin">
-			<%= link_to (image_tag f.avatar.url), f %>
-			<p>
-				<div class="panel-footer"><%= f.title %></div>
-  				<div class="panel-body"><%= f.typ %></div>
-			</p>
-		</div>
-	<% end %>
+<section id="pinBoot">
+	<div class="white-panel">
+		<% @mniams.each do |f| %>
+		<%= link_to (image_tag f.avatar.url), f, :class => "img" %>
+				<h4>
+					<a><%= f.title %></a>
+				<h4>
+				<p>
+					<%= f.description %>
+				</p>
+		<% end %>
+		<br>
 	</div>
-</div>
+</section>
