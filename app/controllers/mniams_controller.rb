@@ -75,10 +75,12 @@ class MniamsController < ApplicationController
   end
 
   def home
-    if params[:tag]
-      @mniams = Mniam.tagged_with(params[:tag])
+    if params[:search]
+      @mniams = Mniam.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => 14)  
+    elsif params[:tag]
+      @mniams = Mniam.tagged_with(params[:tag]).order("created_at DESC").paginate(:page => params[:page], :per_page => 14)  
     else
-      @mniams = Mniam.all
+      @mniams = Mniam.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 14)  
     end
   end
 

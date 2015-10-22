@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to image_tag('logo.png'), root_path, :class => "logo" %> 
+      <%= link_to image_tag('logo.png'), mniams_home_path, :class => "logo" %> 
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -25,11 +25,14 @@
             <li><a href="<%= feed_list_path %>">Feed</a></li>
           </ul>
         </li>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-      </form>
+
+  
+    <%= form_tag(root_path, :method => "get", class: "navbar-form navbar-left", id: "search") do %>
+      <div class="input-append">
+        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search..." %>
+      </div>
+    <% end %>
+
         <li><a href="<%= new_mniam_path %>">New</a></li>
         <li class="dropdown">
 

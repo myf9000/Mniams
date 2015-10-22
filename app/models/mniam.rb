@@ -41,4 +41,9 @@ class Mniam < ActiveRecord::Base
     	mniam.get_upvotes.size
   	end
 
+  	def self.search(query)
+    # where(:title, query) -> This would return an exact match of the query
+    where("title like ?", "%#{query}%") 
+  end
+
 end

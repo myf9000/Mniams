@@ -1,27 +1,29 @@
 <% provide(:title, "Home") %>
-<h4>Listing mniams (<%= @mniams.count %>)</h4>
 
-<div id="tag_cloud">
-  <% tag_cloud Mniam.tag_counts, %w[s m l] do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+<div class="transitions-enabled" id="mniams">
+  <% @mniams.each do |f| %>
+    <div class="box panel panel-default">
+    <div class="hover13 column">
+      <figure><%= link_to (image_tag f.avatar.url), f %></figure>
+     </div>
+      <h2>
+        <a><%= link_to f.title, f %></a>
+      </h2>
+      <p class="user">
+        <%= f.description %>
+        <hr>
+		<span class="label label-primary"><%= f.typ %></span>
+		<span class="label label-primary"><%= f.preparation_time %> <span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
+		<span class="label label-primary"><%= f.price %> <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></span>
+		<span class="label label-primary"><%= f.difficulty %> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span>
+      </p>
+    </div>
   <% end %>
 </div>
 
+<ul class="pagination">
+	<%= will_paginate @mniam %>
+</ul>
 
 
-<hr>
 
-<section id="pinBoot">
-	<div class="white-panel">
-		<% @mniams.each do |f| %>
-		<%= link_to (image_tag f.avatar.url), f, :class => "img" %>
-				<h4>
-					<a><%= f.title %></a>
-				<h4>
-				<p>
-					<%= f.description %>
-				</p>
-		<% end %>
-		<br>
-	</div>
-</section>

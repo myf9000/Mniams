@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap-sprockets
+//= require jquery_ujs
+//= require masonry/jquery.masonry
 //= require cocoon
 //= require private_pub
 //= require chat
