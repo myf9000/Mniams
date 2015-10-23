@@ -36,6 +36,7 @@ class Mniam < ActiveRecord::Base
 		mniams = Mniam.all.select {|i| i.typ == mniam.typ and i.id != mniam.id}
 	end
 
+	
 
 	def score(mniam)
     	mniam.get_upvotes.size

@@ -124,4 +124,40 @@
   }
 }
 
+#tag_cloud {
+  width: 600px;
+  line-height: 1.6em;
+  .xxs { font-size: 0.8em; COLOR: #c3c4c4; }
+  .xs { font-size: 1.0em; COLOR: #b9bdbd; }
+  .s { font-size: 1.2em; COLOR: #b0b5b5; }
+  .m { font-size: 1.4em; COLOR: #9da6a6; }
+  .l { font-size: 1.6em; COLOR: #8a9797; }
+  .xl { font-size: 1.8em; COLOR: #809090; }
+  .xxl { font-size: 2.0em; COLOR: #778888; }
+}
+
+
+.img_small {
+  border-radius: 6px 6px 6px 6px;
+  border-color: #2c3e50;
+  border: 3px solid;
+  width: 35%;
+  height: auto;
+
+}
+
+.img_show {
+  border-radius: 6px 6px 6px 6px;
+  border-color: #eaeff1;
+  border: 2px;
+  width: 95%;
+  height: auto;
+}
+
+nav.share {display:inline-block;} 
+nav.share div {float:right;}
+nav.share iframe {border:0; margin-top:0; padding-top:0;}
+.fb_iframe_widget span { vertical-align: top; }
+.fb_edge_widget_with_comment { vertical-align: top;}
+.fb-like{display:inline-block}
 

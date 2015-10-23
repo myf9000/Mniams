@@ -1,27 +1,39 @@
-
 <% provide(:title, @mniam.title) %>
 
-<h1>Mniam</h1>
-
-<%= @mniam.title %> 
-<%= @mniam.description %> 
-<p> Created at: <%= @mniam.user.email %> | <b>Score: (<%= @rank =%>)</b> | <%= link_to "Show", @mniam.user, class: "btn btn-default" %> | 
-<% if user_signed_in? %>
-  <%= link_to like_mniam_path(@mniam), method: :put do %>
-    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-    <%= @mniam.get_upvotes.size %>
-  <% end %>
-<%end%>
-</p>
-<br>
-<%= image_tag @mniam.avatar.url(:thumb) %>
-<br>
-
-<iframe width="560" height="315" src="<%= @mniam.movie %>" frameborder="0" allowfullscreen></iframe>
-
-<hr>
-
+<div class="container-fluid">
 <div class="row">
+
+<div class="col-md-12">
+  <%= image_tag('logo3.png') %>
+</div> 
+
+<div class="col-md-6">
+  <p> Created at: <%= link_to @mniam.user.email,  @mniam.user%> | <b>Score: (<%= @rank =%>)</b> |
+  <% if user_signed_in? %>
+    <%= link_to like_mniam_path(@mniam), method: :put do %>
+      <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+      <%= @mniam.get_upvotes.size %>
+    <% end %>
+  <%end%> |
+  <span class="label label-success"><%= @mniam.typ %></span> |
+    <span class="label label-success"><%= @mniam.preparation_time %> min <span class="glyphicon glyphicon-time" aria-hidden="true"></span></span> |
+    <span class="label label-success"><%= @mniam.price %> <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></span> |
+    <span class="label label-success">Lvl <%= @mniam.difficulty %> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span> 
+  </div>
+  <div class="col-md-12">
+  </p>
+</div>
+
+<div class="col-md-6">
+  <%= image_tag @mniam.avatar.url, class: "img_show" %>
+</div>
+
+<div class="col-md-6">
+  <h2><%= @mniam.title %></h2>
+  <br>
+  <p><%= @mniam.description %></p>
+</div>
+
   <div class="col-md-6">
     <div id="ingredients">
       <h2>Ingredients</h2>
@@ -34,6 +46,14 @@
       </ul>
     </div>
   </div>
+
+<div class="col-md-12">
+<br>
+</div>
+
+<div class="col-md-6">
+w
+</div>
   <div class="col-md-6">
     <div id="directions">
       <h2>Directions</h2>
@@ -46,24 +66,24 @@
       </ul>
     </div>
   </div>
+
+
+
+<div class="col-md-12">
+<hr>
+  <%= link_to "Back", :back, class: "btn btn-default" %>
+  <% if @mniam.user == current_user %>
+    <%= link_to "Edit", edit_mniam_path(@mniam), class: "btn btn-default" %>
+    <%= link_to "Delete", mniam_path, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %>
+  <%end%> |
+  <% if current_user %>
+    <%= link_to "Favorite+", favorite_mniam_path(@mniam, type: "favorite"), method: :put, class: "btn btn-primary"%>
+  <% end %>
+  <%= link_to "Create PDF", show_path(@mniam, :format => :pdf), class: "btn btn-primary" %>
 </div>
-
-<hr>
-  <p>Price: <%= @mniam.price %> Euro
-  <br>
-  Difficulty:  <%=@mniam.difficulty %>
-  <br>
-  Preparation time: <%=@mniam.preparation_time %> min
-  <br>
-  Type: <%=@mniam.typ %> </p>
-<hr>
-<%= link_to "Back", root_path, class: "btn btn-default" %>
-<% if @mniam.user == current_user %>
-  <%= link_to "Edit", edit_mniam_path(@mniam), class: "btn btn-default" %>
-  <%= link_to "Delete", mniam_path, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %>
-<%end%>
 <hr>
 
+<div class="col-md-12">
 <h3> Related Mniams: </h3>
 <% @mniam.related(@mniam).each do |f| %>
   <%= f.title %>
@@ -72,17 +92,9 @@
 <% end %>
 
 <hr>
-<h3>Favorited list: </h3>
-<% if current_user %>
-  <%= link_to "favorite",   favorite_mniam_path(@mniam, type: "favorite"), method: :put %>
-<% end %>
-<hr>
-<p><%= render_shareable :buttons=> ['twitter', 'facebook', 'google_plus', 'pinterest']  %></p>
-<hr>
-<%= link_to "Create PDF document", show_path(@mniam, :format => :pdf) %>
+</div>
 
-<hr>
-
+<div class="col-md-12">
 <h4><b>Comments: (<%= @mniam.comments.count %>)</b></h4>
 Add a comment!
 <%= form_for @comment do |f| %>
@@ -110,3 +122,8 @@ Add a comment!
 <% end %>
 <hr>
 <%= comments_tree_for @comments %>
+</div>
+</div>
+</p>
+
+<!--<iframe width="560" height="315" src="<%= @mniam.movie %>" frameborder="0" allowfullscreen></iframe> -->

@@ -1,12 +1,17 @@
 <% provide(:title, "Feed") %>
 
-<hr>
+<div class="transitions-enabled" id="mniams">
+  <% @feed_items.each do |f| %>
+    <div class="box panel panel-default">
+    <div class="hover13 column">
+      <figure><%= link_to (image_tag f.avatar.url), f %></figure>
+     </div>
+      <h2>
+        <a><%= link_to f.title, f %></a>
+      </h2>
+      Submited by: <p><%= f.user.email %></p>
+    </div>
+  <% end %>
+</div>
 
-<% @feed_items.each do |f| %>
-	<%= f.title %>
-	<%= f.description %>
-	<%= link_to "Show", f, class: "btn btn-default" %>
-	<br>
-<% end %>
-<hr>
-<%= link_to "Back", users_path, class: "btn btn-default" %>
+<%= will_paginate @feed_items %>

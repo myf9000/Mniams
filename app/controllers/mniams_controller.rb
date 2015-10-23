@@ -3,8 +3,8 @@ class MniamsController < ApplicationController
   before_action :authenticate_user!, except: [:home]
 
   def index
-    @search = Mniam.search(params[:q])
-    @mniams = @search.result
+    @search = Mniam.ransack(params[:q])
+    @mniams = @search.result.order("created_at DESC").paginate(:page => params[:page], :per_page => 7)  
   end
 
   def show
@@ -107,8 +107,11 @@ class MniamsController < ApplicationController
   end
 
   def top
-    @mniams = Mniam.all.order(@rank)   
-    @mniams = @mniams[0...5] 
+    
+    
+    
+    @top = Mniam.all.order(@rank)
+    @top = @top[0...5] 
   end
 
   private 
