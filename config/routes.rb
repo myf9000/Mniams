@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
   
+  get 'tips/new'
+
+  get 'tips/create'
+
+  get 'tips/show'
+
+  get 'tips/index'
+
   resources :conversations do
     resources :messages
   end
 
+  resources :tips, only: [:index, :show, :destroy, :new]
   devise_for :users do
   delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
 end

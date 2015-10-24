@@ -1,0 +1,19 @@
+<div class="jumbotron">
+<div class="container-fluid">
+<div class="row">
+    <%= simple_form_for @tip, html: { multipart: true } do |f| %>
+
+     <div class="col-md-6">
+      <%= f.input :title, input_html: {class: 'form-control'} %>
+    </div>
+
+     <div class="col-md-6">
+      <%= f.input :movie, input_html: {class: 'form-control'}%>
+    </div>
+
+    <div class="col-md-12">
+    <%= link_to "Back", :back, class: "btn btn-default" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+
+   	<% end %>

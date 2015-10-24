@@ -1,0 +1,19 @@
+<% provide(:title, "Tips") %>
+
+<%= link_to "New", new_tip_path %>
+
+<h4>Tips (<%= @tips.count %>)</h4>
+<div class="transitions-enabled" id="mniams">
+  <% @tips.each do |f| %>
+    <div class="box panel panel-default">
+    <div class="hover13 column">
+     <iframe width="560" height="315" src="<%= f.movie %>" frameborder="0" allowfullscreen></iframe>
+     </div>
+      <h2>
+        <a><%= link_to f.title, f %></a>
+      </h2>
+    </div>
+  <% end %>
+</div>
+
+<%= will_paginate @mniam %>

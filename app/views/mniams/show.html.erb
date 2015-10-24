@@ -7,7 +7,7 @@
   <%= image_tag('logo3.png') %>
 </div> 
 
-<div class="col-md-6">
+<div class="col-md-12">
   <p> Created at: <%= link_to @mniam.user.email,  @mniam.user%> | <b>Score: (<%= @rank =%>)</b> |
   <% if user_signed_in? %>
     <%= link_to like_mniam_path(@mniam), method: :put do %>
@@ -28,6 +28,8 @@
   <%= image_tag @mniam.avatar.url, class: "img_show" %>
 </div>
 
+<div class="panel panel-default">
+  <div class="panel-body">
 <div class="col-md-6">
   <h2><%= @mniam.title %></h2>
   <br>
@@ -67,7 +69,8 @@ w
     </div>
   </div>
 
-
+</div>
+</div>
 
 <div class="col-md-12">
 <hr>

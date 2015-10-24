@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022162347) do
+ActiveRecord::Schema.define(version: 20151024172138) do
 
   create_table "comment_hierarchies", id: false, force: :cascade do |t|
     t.integer "ancestor_id",   null: false
@@ -144,6 +144,16 @@ ActiveRecord::Schema.define(version: 20151022162347) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "tips", force: :cascade do |t|
+    t.string   "movie"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title"
+  end
+
+  add_index "tips", ["user_id"], name: "index_tips_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                    default: "",    null: false
