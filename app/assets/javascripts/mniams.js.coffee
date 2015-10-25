@@ -1,6 +1,5 @@
-$(document).ready ($) ->
- $container = $("#mniams")
- setTimeout (-> $container.masonry
+$ ->
+  $('#mniams').imagesLoaded ->
+    $('#mniams').masonry
       itemSelector: '.box'
-      isFitWidth: true), 
-  200
+      isFitWidth: true

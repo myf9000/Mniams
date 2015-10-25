@@ -18,7 +18,6 @@ class UsersController < ApplicationController
 	    end
   	end
 
-  	
   def following
     @title = "Following"
     @users = @user.following.paginate(page: params[:page])
