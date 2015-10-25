@@ -1,11 +1,10 @@
 <% provide(:title, "Users") %>
 <hr>
 
-<%= will_paginate @posts %>
 <br>
 
 <% @users.each_with_index do |user, index| %>   <!-- tutaj cos ze scope - rankigniem zle -->
-	<p><%=index+1%>. <%= user.email %>
+	<p><%=index+1%>. <%= user.email %> <b>Score: (<%= user.scores(user) %>)</b>
 	<%= link_to "Show", user, class: "btn btn-default" %>
 	<%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
                               "data-sid" => current_user.id, "data-rip" => user.id %>

@@ -12,10 +12,10 @@ class MniamsController < ApplicationController
     @comment = @mniam.comments.build(parent_id: params[:parent_id])
     @comment.mniam_id = @mniam.id
     @mniams = Mniam.all
-    @rank = 0
     @user = User.find(@mniam.user.id)
+    @user.rank = 0
     @user.mniams.each do |f|
-      @rank += f.get_upvotes.size
+      @user.rank += f.get_upvotes.size
     end
 
      respond_to do |format|
@@ -97,11 +97,9 @@ class MniamsController < ApplicationController
   end
 
   def top
-    
-    
-    
-    @top = Mniam.all.order(@rank)
-    @top = @top[0...5] 
+    @mniams = Mniam.all
+    @mniams = @mniams.sort {|a, b| b.score<=>a.score}
+    @top = @mniams[0..4]
   end
 
   private 

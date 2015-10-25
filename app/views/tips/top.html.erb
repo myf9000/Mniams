@@ -1,8 +1,6 @@
-<% provide(:title, "Tips") %>
+<% provide(:title, "Top tips") %>
 <div class="col-md-10 col-md-offset-1">
-<%= render 'filter_form' %>
-<hr>
-<h4>Tips (<%= @tips.count %>)</h4>
+<h4>The best tips (<%= @tips.count %>)</h4>
 <% @tips.each do |f| %>
 <table class="table table-striped table-hover ">
 <div class="row">
@@ -28,6 +26,9 @@
     </tbody>
     </table>
     <% end %>
+    <div class="col-md-12">
+        <hr>
+        <%= link_to "Back", tips_path, class: "btn btn-primary" %>
     </div>
 </div>
-<%= will_paginate @tips %>
+

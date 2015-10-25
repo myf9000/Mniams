@@ -29,6 +29,12 @@ class TipsController < ApplicationController
     @tips = @search.result.order("created_at DESC").paginate(:page => params[:page], :per_page => 7)  
   end
 
+  def top
+    @tips = Tip.all
+    @tips = @tips.sort {|a, b| b.score<=>a.score}
+    @tips = @tips[0..5]
+  end
+
   def movie_conventer
     yt_id = @tip.movie[@tip.movie.length-11...@tip.movie.length]
     if yt_id.nil?

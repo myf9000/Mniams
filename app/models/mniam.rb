@@ -38,9 +38,9 @@ class Mniam < ActiveRecord::Base
 
 	
 
-	def score(mniam)
-    	mniam.get_upvotes.size
-  	end
+	def score
+      self.get_upvotes.size 
+   	end
 
   	def self.search(query)
     # where(:title, query) -> This would return an exact match of the query

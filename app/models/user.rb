@@ -46,13 +46,11 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
-  def score(user)
-    mniams = Mniam.all
-    rank = 0
+  def scores(user)
+    s = 0
     user.mniams.each do |f|
-	     rank += f.get_upvotes.size
-	  end
-    return rank
+      s += f.get_upvotes.size
+    end
+    s 
   end
-
 end

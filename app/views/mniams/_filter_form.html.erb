@@ -2,29 +2,33 @@
 <div class="jumbotron">
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
              <%= search_form_for @search do |f| %>
               Price min: <%= f.text_field :price_gteq, class: "form-control", placeholder: "Minumum Price" %>
               Price max: <%= f.text_field :price_lteq, class: "form-control", placeholder: "Maximum Price" %>
               Preparation time [min]: <%= f.text_field :preparation_time_lteq, class: "form-control", placeholder: "Time" %>
-              <br>
-              Difficult level:  <%= f.select :difficulty_eq, [ 'Easy', 'Medium', 'Hard'], :prompt => 'Select One', class: "radius"%>
-             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-              Type mniams: <%= f.select :typ_eq, [ 'Dinner', 'Breakfast', 'Lunch', 'Snack', 'Diet', 'Dessert'], :prompt => 'Select One', class: "radius"%>
-              <br>
-              <br>
-          <%= f.submit "Search", class: "btn btn-primary" %>
-            <% end %>
         </div>
-        
-        <div class="col-md-7">
+        <div class="col-md-6">
         Tags:
           <div id="tag_cloud">
             <% tag_cloud Mniam.tag_counts, %w[s m l] do |tag, css_class| %>
               <%= link_to tag.name, tag_path(tag.name), class: css_class %>
             <% end %>
           </div>
-      
+        </div>
+        <div class="col-md-12">
+          
+        </div>
+         <div class="col-md-3">
+              Difficult level:  <%= f.select :difficulty_eq, [ 'Easy', 'Medium', 'Hard'], {:prompt => 'Select One'}, { class: "form-control", :id => "select" } %>
+        </div>
+        <div class="col-md-3">
+              Type mniams: <%= f.select :typ_eq, [ 'Dinner', 'Breakfast', 'Lunch', 'Snack', 'Diet', 'Dessert'], {:prompt => 'Select One'},{ class: "form-control", :id => "select" } %>
+        </div>
+        <div class="col-md-12">
+        <br>
+        <%= f.submit "Search", class: "btn btn-primary" %>
+            <% end %>
         </div>
         </div>
     </div>

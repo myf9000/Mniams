@@ -8,7 +8,7 @@
 </div> 
 
 <div class="col-md-12">
-  <p> Created at: <%= link_to @mniam.user.email,  @mniam.user%> | <b>Score: (<%= @rank =%>)</b> |
+  <p> Created at: <%= link_to @mniam.user.email,  @mniam.user%> | <b>Score: (<%= @user.rank =%>)</b> |
   <% if user_signed_in? %>
     <%= link_to like_mniam_path(@mniam), method: :put do %>
       <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   devise_for :users do
   delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
 end
-
+get 'top/tips' => 'tips#top', :as => :top_tips
   resources :users, :only => [:show, :index, :destroy] do
     member do
       get :following, :followers
