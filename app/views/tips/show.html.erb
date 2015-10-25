@@ -1,8 +1,67 @@
+<% provide(:title, @tip.title ) %>
+<div class="col-md-8 col-md-offset-2">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+		 	<%= image_tag('logo4.png') %>
+		</div>
+		<div class="col-md-12">
+			<p>
+		    	Created at: <%= link_to @tip.user.email,  @tip.user%> | 		
+		    	<span class="label label-success"><%= @tip.category %> <span class="glyphicon glyphicon-flag" aria-hidden="true"></span></span> | 
+				  <% if user_signed_in? %>
+				    <%= link_to like_tip_path(@tip), method: :put do %>
+				      <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+				      <b>(<%= @tip.get_upvotes.size %>)</b>
+				    <% end %>
+				  <%end%> 
+			</p>
+		</div>
+		<div class="col-md-12">
+			<h3><%= @tip.title %></h3>
+		</div>
+		<div class="col-md-12">
+			<iframe width="720" height="380" src="<%= @tip.movie %>" frameborder="0" allowfullscreen></iframe> 
+		</div>
 
+		<div class="col-md-12">
+			<h4><%= @tip.description %></h4>
+		</div>
+	
+	<div class="col-md-12">
+	<hr>
+		<%= link_to "Back", tips_path, class: "btn btn-primary" %>
+		<br>
+	</div>
+	<div class="col-md-12">
+	<h4><b>Comments: (<%= @tip.comments.count %>)</b></h4>
+	Add a comment!
+	<%= form_for @comment do |f| %>
+	  <% if @comment.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
-<hr>
-<%= @tip.title %>
+	      <ul>
+	        <% @comment.errors.full_messages.each do |msg| %>
+	          <li><%= msg %></li>
+	        <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	  <%= f.hidden_field :tip_id %>
+	  <%= f.hidden_field :user_id %>
+	  <%= f.hidden_field :parent_id %>
+	  <div class="form-group">
+	    
+	    <%= f.text_area :body, class: 'form-control', required: true %>
+	  </div>
+	  
 
-<iframe width="560" height="315" src="<%= @tip.movie %>" frameborder="0" allowfullscreen></iframe> 
-
-<hr>
+	  <%= f.submit class: 'btn btn-primary' %>
+	<% end %>
+	<hr>
+	<%= comments_tree_for @comments %>
+	</div>
+</div>
+</div>
+</div>

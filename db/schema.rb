@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024172138) do
+ActiveRecord::Schema.define(version: 20151025094946) do
 
   create_table "comment_hierarchies", id: false, force: :cascade do |t|
     t.integer "ancestor_id",   null: false
@@ -30,9 +30,11 @@ ActiveRecord::Schema.define(version: 20151024172138) do
     t.integer  "parent_id"
     t.integer  "mniam_id"
     t.integer  "user_id"
+    t.integer  "tip_id"
   end
 
   add_index "comments", ["mniam_id"], name: "index_comments_on_mniam_id"
+  add_index "comments", ["tip_id"], name: "index_comments_on_tip_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "conversations", force: :cascade do |t|
@@ -148,9 +150,11 @@ ActiveRecord::Schema.define(version: 20151024172138) do
   create_table "tips", force: :cascade do |t|
     t.string   "movie"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "title"
+    t.text     "description"
+    t.string   "category"
   end
 
   add_index "tips", ["user_id"], name: "index_tips_on_user_id"

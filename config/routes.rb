@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     resources :messages
   end
 
-  resources :tips, only: [:index, :show, :destroy, :new]
+  resources :tips do
+    member do
+      put "like", to: "tips#upvote"
+    end
+  end
   devise_for :users do
   delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
 end

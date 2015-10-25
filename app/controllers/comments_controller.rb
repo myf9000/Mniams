@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
      @comment.author = current_user.email
      @comment.user_id = current_user.id
      @comment.mniam_id = Comment.find(params[:parent_id]).mniam_id
+     @comment.tip_id = Comment.find(params[:parent_id]).tip_id
   end
 
   def create 
@@ -22,15 +23,15 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:success] = 'Your comment was successfully added!'
-      redirect_to :back
     else
       render 'new'
     end
+    redirect_to :back
   end
 
 private
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :mniam_id, :author)
+    params.require(:comment).permit(:body, :user_id, :mniam_id, :author, :tip_id)
   end
 end

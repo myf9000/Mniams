@@ -17,7 +17,6 @@ class MniamsController < ApplicationController
     @user.mniams.each do |f|
       @rank += f.get_upvotes.size
     end
-    @mniam.movie = movie_conventer
 
      respond_to do |format|
       format.html
@@ -63,15 +62,6 @@ class MniamsController < ApplicationController
 
   def new
     @mniam = current_user.mniams.build
-  end
-
-  def movie_conventer
-    yt_id = @mniam.movie[@mniam.movie.length-11...@mniam.movie.length]
-    if yt_id.nil?
-      yt = ""
-    else 
-      yt = "https://www.youtube.com/embed/" + yt_id
-    end
   end
 
   def home
@@ -121,7 +111,7 @@ class MniamsController < ApplicationController
   end
 
   def mniam_params
-    params.require(:mniam).permit(:title, :description, :avatar, :tag_list, :movie, :slug, :price, :difficulty, :typ, :preparation_time,
+    params.require(:mniam).permit(:title, :description, :avatar, :tag_list, :slug, :price, :difficulty, :typ, :preparation_time,
                                  ingredients_attributes: [:id, :name, :_destroy], directions_attributes: [:id, :step, :_destroy])
   end
 end
