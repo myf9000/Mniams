@@ -19,6 +19,7 @@
 //= require chat
 //= require turbolinks
 //= require masonry/jquery.masonry
+//= require social-share-button
 //= require_tree .
 
 

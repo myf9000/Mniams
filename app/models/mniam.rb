@@ -34,6 +34,7 @@ class Mniam < ActiveRecord::Base
 
 	def related(mniam)
 		mniams = Mniam.all.select {|i| i.typ == mniam.typ and i.id != mniam.id}
+		mniams = mniams[0..20]
 	end
 
 	

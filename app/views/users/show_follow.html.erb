@@ -1,10 +1,21 @@
  <% provide(:title, @title) %>
 
+<div class="col-md-8 col-md-offset-2">
+  <div class="container-fluid">
+  <div class="row">
 
+
+<div class="col-md-5">
+  <%= (image_tag @user.user_avatar.url(:medium), class: "user_img") %>
+</div>
+
+<div class="col-md-7">
  <h1><%= @user.email %></h1>
- <span><%= link_to "view my profile", @user %></span>
+ <span><%= link_to "view my profile", @user, class: "btn btn-primary" %></span>
+</div>
 
-<hr>
+<div class="col-md-12">
+<br>
 <div class="stats">
   <a href="<%= following_user_path(@user) %>">
     <strong id="following" class="stat">
@@ -20,11 +31,17 @@
   </a>
 </div>
 <hr>
+</div>
 
+<div class="col-md-12">
 <% if @users.any? %>
         <div class="user_avatars">
-          <% @users.each do |user| %>
-            <%= link_to user.email, user %>
+          <% @users.each do |f| %>
+            <%= link_to (image_tag f.user_avatar.url(:medium), class: "img_related"),f  %>
           <% end %>
         </div>
       <% end %>
+</div>
+</div>
+</div>
+</div>

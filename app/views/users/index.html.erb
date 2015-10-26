@@ -1,31 +1,38 @@
 <% provide(:title, "Users") %>
-<hr>
+<div class="col-md-8 col-md-offset-2">
+  <div class="container-fluid">
+  <div class="row">
 
-<br>
+<div class="col-md-12">
+  <p style="text-align:center"><%= link_to image_tag('logo44.png'), root_path %></p>
+</div>
 
-<% @users.each_with_index do |user, index| %>   <!-- tutaj cos ze scope - rankigniem zle -->
-	<p><%=index+1%>. <%= user.email %> <b>Score: (<%= user.scores(user) %>)</b>
-	<%= link_to "Show", user, class: "btn btn-default" %>
-	<%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
-                              "data-sid" => current_user.id, "data-rip" => user.id %>
+<div class="col-md-12">
+<table class="table table-striped table-hover ">
+<% @users.each_with_index do |user, index| %> 
+<tr >
+<div class="col-md-6">
+	<td><%=index+1%>. 
+  <%= (image_tag user.user_avatar.url(:medium), class: "img_related") %>
+  <%= link_to user.email, user %> <b>Score: (<%= user.scores(user) %>)</b>
+  <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" => user.id %>
 	<% if current_user.admin? %>
-  		<%= link_to "Delete", user, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %>
-	<%end%> </p>
-	<br>
+  		<%= link_to "Delete", user, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %> </td>
+	<%end%> 
+  </tr>
 <% end %>
+</table>
+</div>
 
-
-<hr>
-<%= link_to "Back", root_path, class: "btn btn-success" %>
+<div class="col-md-12">
 <hr> 
 <h3>Your Conversations</h3>
-
     <div style="height: 400px; overflow-y: auto;">
       <% if @conversations.any? %>
           <ul class="media-list">
             <% @conversations.each do |conversation| %>
                 <li class="media">
-                  <%= image_tag("http://placehold.it/50x50", class: "media-object pull-left") %>
+                  <%= image_tag(User.find(conversation.recipient_id).user_avatar.url, class: "img_related media-object pull-left") %>
                   <div class="media-body">
                   <%=User.find(conversation.recipient_id).email%>  
                     <%= link_to "Reply", conversation_path(conversation), class: "conversation", "data-cid" => conversation.id %>
@@ -40,7 +47,8 @@
           <p>You have no conversations. Click send message with any user to create one.</p>
       <% end %>
     </div>
-
   </div>
+  </div>
+</div>
 
-  <div class="col-md-4">
+

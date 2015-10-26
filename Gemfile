@@ -33,11 +33,10 @@ gem "paperclip", "~> 4.3"
 gem 'ransack', '~> 1.7.0'
 gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
-gem 'shareable'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'friendly_id', '~> 5.1.0'
-
+gem 'social-share-button', '~> 0.1.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bootstrap-sass', '~> 3.3.5.1'

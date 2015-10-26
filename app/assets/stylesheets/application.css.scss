@@ -12,6 +12,7 @@
  *
  *= require_self
  *= require 'masonry/transitions'
+ *= require social-share-button
  *= require_tree .
  */
 
@@ -125,7 +126,7 @@
 }
 
 #tag_cloud {
-  width: 600px;
+  width: 500px;
   line-height: 1.6em;
   .xxs { font-size: 0.8em; COLOR: #c3c4c4; }
   .xs { font-size: 1.0em; COLOR: #b9bdbd; }
@@ -167,4 +168,21 @@ nav.share iframe {border:0; margin-top:0; padding-top:0;}
 
 .aaa {
   color: #2c3e50;
+}
+
+.img_related {
+  height: 55px; 
+  width: 55px; 
+  border-radius: 5px 5px 5px 5px;
+}
+
+.related {
+  
+  display: inline;
+}
+
+.user_img {
+  border-radius: 6px 6px 6px 6px;
+  border-color: #2c3e50;
+  border: 1px;
 }

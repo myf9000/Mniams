@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :mniams, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :tips, dependent: :destroy
-  has_attached_file :user_avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :user_avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "http://logocache.com/custom-design/logo-name/1533867-designstyle-chess-m.png"
   validates_attachment_content_type :user_avatar, content_type: /\Aimage\/.*\Z/
   
   has_many :favorite_recipes  
@@ -53,4 +53,10 @@ class User < ActiveRecord::Base
     end
     s 
   end
+
+  def blank_image(f)
+    if f.user_avatar.empty?
+    end
+  end
+
 end
