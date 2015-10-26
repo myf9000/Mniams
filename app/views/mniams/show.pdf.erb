@@ -1,13 +1,12 @@
 
-
-<h1>Mniam</h1>
-
-<%= @mniam.title %> 
-<%= @mniam.description %> 
-
-<hr>
-
 <div class="row">
+<div class="col-md-12">
+  <h1>Recipe Mmm...</h1>
+  <h2><%= @mniam.title %></h2>
+  <p><%= @mniam.description %> </p>
+  <hr>
+</div>
+
   <div class="col-md-6">
     <div id="ingredients">
       <h2>Ingredients</h2>
@@ -32,13 +31,12 @@
       </ul>
     </div>
   </div>
-</div>
 
+<div class="col-md-12">
 <hr>
-  <p>Price: <%= @mniam.price %> Euro
-  <br>
-  Difficulty:  <%=@mniam.difficulty %>
-  <br>
-  Preparation time: <%=@mniam.preparation_time %> min
-  <br>
-  Type: <%=@mniam.typ %> </p>
+  <p><b>Price: </b><%= @mniam.price %> Euro </p>
+  <p><b>Difficulty: </b> <%=@mniam.difficulty %> </p>
+  <p><b>Preparation time: </b><%=@mniam.preparation_time %> min </p>
+  <p><b>Type: </b><%=@mniam.typ %> </p>
+</div>
+</div>
