@@ -3,7 +3,7 @@
 	<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-		 	<%= image_tag('logo4.png') %>
+		 	<%= link_to image_tag('logo4.png'), tips_path %>
 		</div>
 		<div class="col-md-12">
 			<p>
@@ -31,6 +31,10 @@
 	<div class="col-md-12">
 	<hr>
 		<%= link_to "Back", tips_path, class: "btn btn-primary" %>
+		<% if @tip.user == current_user  or current_user.admin?%>
+		    <%= link_to "Edit", edit_tip_path(@tip), class: "btn btn-default" %>
+		    <%= link_to "Delete", tip_path, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-default" %>
+		<%end%> 
 		<br>
 	</div>
 	<div class="col-md-12">

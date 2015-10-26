@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <div class="container-fluid">
+    <div class="row">
+    <%= simple_form_for @tip, html: { multipart: true } do |f| %>
+
+     <div class="col-md-12">
+      <%= f.input :title, input_html: {class: 'form-control'} %>
+    </div>
+
+     <div class="col-md-6">
+      <%= f.input :movie, input_html: {class: 'form-control'}%>
+    </div>
+
+    <div class="col-md-6">
+    <%= f.label :category %>
+        <%= f.select :category, [ 'Tip', 'Dinner', 'Breakfast', 'Lunch', 'Snack', 'Diet', 'Dessert'], {:prompt => 'Select One'}, { class: "form-control", :id => "select" } %>
+    </div>
+
+	   <div class="col-md-12">
+      <%= f.input :description, input_html: {class: 'form-control'}%>
+    </div>
+
+    <div class="col-md-12">
+      <%= link_to "Back", :back, class: "btn btn-default" %>
+      <%= f.button :submit, class: "btn btn-primary" %>
+  	</div>
+
+   	<% end %>
+    </div>
+  </div>
+</div>

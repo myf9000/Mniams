@@ -27,18 +27,18 @@ class MniamsController < ApplicationController
   end
 
   def destroy
-    if @mniam.user != current_user
-      render 'unprivileged_request'
-    else
+    if @mniam.user == current_user  or current_user.admin?
       @mniam.destroy
       @mniam.comments.destroy
       redirect_to root_path, notice: "Eat was deleted"
+    else
+      render 'shared/unprivileged_request'
     end
   end
 
   def edit
-    if @mniam.user != current_user
-      render 'unprivileged_request'
+    unless @mniam.user == current_user  or current_user.admin?
+      render 'shared/unprivileged_request'
     end
   end
 

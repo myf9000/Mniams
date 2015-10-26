@@ -1,5 +1,5 @@
 class TipsController < ApplicationController
-  before_action :find_tip, only: [:show, :upvote]
+  before_action :find_tip, only: [:show, :upvote, :edit, :destroy, :update]
 	before_action :authenticate_user!
 
   def new
@@ -33,6 +33,31 @@ class TipsController < ApplicationController
     @tips = Tip.all
     @tips = @tips.sort {|a, b| b.score<=>a.score}
     @tips = @tips[0..5]
+  end
+
+  def edit
+    unless @tip.user == current_user  or current_user.admin?
+      render 'shared/unprivileged_request'
+    end
+  end
+
+  def destroy
+    if @tip.user == current_user  or current_user.admin?
+      @tip.destroy
+      @tip.comments.destroy
+      redirect_to tips_path, notice: "Tip was deleted"
+    else
+      render 'shared/unprivileged_request'
+    end
+  end
+
+  def update
+    if @tip.update(set_movie)
+      @tip.save
+      redirect_to @tip, notice: "Tip was updated"
+    else
+      render 'edit'
+    end
   end
 
   def movie_conventer
