@@ -15,16 +15,14 @@
 </head>
 <body>
 <%= render 'shared/navbar' %>
-<br>
-<br>
-<div class="body">
-	<div class="alert">
+<div class="alert">
 		<div class="col-md-10 col-md-offset-1">
 			<% flash.each do |name, msg| %>
 				<%= content_tag :div, msg, class: "alert alert-info" %>
 			<%end%>
 		</div>
 	</div>
+<div class="body">
 
 	<div class="container-fluid" >
 		<div class="row">
