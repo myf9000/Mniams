@@ -44,6 +44,7 @@ gem 'wkhtmltopdf-binary'
 gem 'private_pub'
 gem 'thin'
 gem 'masonry-rails', '~> 0.2.1'
+gem 'mail_form', '~> 1.5', '>= 1.5.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

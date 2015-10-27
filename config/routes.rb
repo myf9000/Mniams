@@ -8,10 +8,11 @@ Rails.application.routes.draw do
 
   get 'tips/index'
 
+  resources :contacts, only: [:new, :create]
+
   resources :conversations do
     resources :messages
   end
-
   resources :tips do
     member do
       put "like", to: "tips#upvote"
