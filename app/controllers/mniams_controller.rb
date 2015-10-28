@@ -26,6 +26,34 @@ class MniamsController < ApplicationController
     end
   end
 
+  def filtering_mniams
+    if params[:id]
+      #binding.pry
+      @mniams = Mniam.all
+      @mniams = @mniams.select do |f| 
+        if f.typ == params[:id] or f.difficulty == params[:id] 
+          f
+        elsif f.price <= params[:id].to_i 
+          f
+        end
+      end
+    end
+  end
+
+   def filtering_mniams2
+    if params[:id]
+      #binding.pry
+      @mniams = Mniam.all
+      @mniams = @mniams.select do |f| 
+        if f.preparation_time <= params[:id].to_i 
+          f
+        end
+      end
+      render "filtering_mniams"
+    end
+  end
+
+
   def destroy
     if @mniam.user == current_user  or current_user.admin?
       @mniam.destroy

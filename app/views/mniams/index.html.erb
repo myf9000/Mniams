@@ -16,10 +16,10 @@
       <p class="user">
         <%= f.description %>
         <hr>
-		<span class="label label-primary"><%= f.typ %></span>
-		<span class="label label-primary"><%= f.preparation_time %> <span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
-		<span class="label label-primary"><%= f.price %> <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></span>
-		<span class="label label-primary"><%= f.difficulty %> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span>
+		          <%= link_to filtering_mniams_path(f.typ) do %> <span class="label label-primary"><%= f.typ %></span> <% end%>
+              <%= link_to filtering_mniams2_path(f.preparation_time) do %><span class="label label-primary"><%= f.preparation_time %> min <span class="glyphicon glyphicon-time" aria-hidden="true"></span></span> <% end %>
+              <%= link_to filtering_mniams_path(f.price) do %><span class="label label-primary"><%= f.price %> <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></span> <% end %>
+              <%= link_to filtering_mniams_path(f.difficulty) do %><span class="label label-primary"><%= f.difficulty %> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span> <% end%>
       </p>
     </div>
   <% end %>

@@ -19,10 +19,10 @@
                 <%= @mniam.get_upvotes.size %>
               <% end %> |
             <%end%> 
-            <span class="label label-success"><%= @mniam.typ %></span> |
-              <span class="label label-success"><%= @mniam.preparation_time %> min <span class="glyphicon glyphicon-time" aria-hidden="true"></span></span> |
-              <span class="label label-success"><%= @mniam.price %> <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></span> |
-              <span class="label label-success"><%= @mniam.difficulty %> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span> 
+              <%= link_to filtering_mniams_path(@mniam.typ) do %> <span class="label label-success"><%= @mniam.typ %></span> <% end%>|
+              <%= link_to filtering_mniams2_path(@mniam.preparation_time) do %><span class="label label-success"><%= @mniam.preparation_time %> min <span class="glyphicon glyphicon-time" aria-hidden="true"></span></span> <% end %>|
+              <%= link_to filtering_mniams_path(@mniam.price) do %><span class="label label-success"><%= @mniam.price %> <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></span> <% end %>|
+              <%= link_to filtering_mniams_path(@mniam.difficulty) do %><span class="label label-success"><%= @mniam.difficulty %> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span> <% end%>
            </p>
         </div>
 
