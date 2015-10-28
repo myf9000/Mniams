@@ -1,9 +1,17 @@
-<h1>New comment</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h1>New comment</h1>
 
-<% if @comment.parent %>
-  <%= render 'comment', comment: @comment.parent, from_reply_form: true %>
-<% end %>
+    <% if @comment.parent %>
+      <%= render 'comment', comment: @comment.parent, from_reply_form: true %>
+    <% end %>
 
-<%= render 'form' %>
-<br>
-<%= link_to "Back", root_path, class: "btn btn-primary"  %>
+    <%= render 'form' %>
+    <br>
+    <% if @comment.tip_id == nil %>
+      <%= link_to "Back to Mniam", mniam_path(@comment.mniam_id), class: "btn btn-success"  %>
+    <% else %>
+      <%= link_to "Back to Tip", tip_path(@comment.tip_id), class: "btn btn-success"  %>
+    <% end %>
+  </div>
+</div>

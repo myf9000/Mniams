@@ -9,7 +9,7 @@
       <h2>
         <a><%= link_to f.title, f %></a>
       </h2>
-      Submited by: <p><%= f.user.email %></p>
+      Submited by: <p><%= link_to f.user.email, f.user %></p>
     </div>
   <% end %>
 </div>

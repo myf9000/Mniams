@@ -1,21 +1,31 @@
 <% provide(:title, "Top") %>
 
-<h2>The BEST meal for Week!</h2>
+<div class="row">
+<div class="col-md-4 col-md-offset-4">
+<div class="col-md-12">
+  <p style="text-align:center"><%= image_tag('best.png')%></p>
+</div> 
 
 <hr>
-<div class="transitions-enabled" id="mniams">
-  <% @top.each_with_index do |f, index| %>
-    <div class="box panel panel-default">
-    <div class="hover13 column">
-      <figure><%= link_to (image_tag f.avatar.url), f %></figure>
-     </div>
-      <h2>
-        <a><%= link_to f.title, f %></a>
-      </h2>
-      <p>Rank: <%=index+1%>
-		<span class="label label-primary"><%= f.score %> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span></span></p>
-      </p>
-    </div>
-  <% end %>
-</div>
 
+  <% @top.each_with_index do |f, index| %>
+  <table class="table table-striped table-hover ">
+    <tbody>
+    <tr>
+      <td style="text-align:center">
+      <br>
+        <%= link_to (image_tag f.avatar.url, class: "top_img"), f %>
+      <h2>
+        <%= f.title%>
+      </h2>
+      <p><b>Rank: </b><%=index+1%>
+		<span class="label label-primary"><%= f.score %> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span></span></p></td>
+      </p>
+      </tr>
+      </tbody>
+      </table>
+     
+  <% end %>
+
+</div>
+</div>

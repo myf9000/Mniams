@@ -1,7 +1,7 @@
 <% provide(:title, @user.email) %>
 <div class="col-md-8 col-md-offset-2">
-  <div class="container-fluid">
-  <div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
 
 <div class="col-md-6">
   <%= (image_tag @user.user_avatar.url(:medium), class: "user_img") %>

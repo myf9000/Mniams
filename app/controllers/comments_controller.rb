@@ -23,10 +23,10 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:success] = 'Your comment was successfully added!'
+      redirect_to :back
     else
       render 'new'
     end
-    redirect_to :back
   end
 
 private

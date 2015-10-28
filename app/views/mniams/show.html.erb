@@ -1,128 +1,132 @@
 <% provide(:title, @mniam.title) %>
 
-<div class="container-fluid">
-<div class="row">
-
 <div class="col-md-12">
   <p style="text-align:center"><%= link_to image_tag('logo3.png'), root_path %></p>
 </div> 
 
-<div class="col-md-12">
-  <p> By: <%= link_to @mniam.user.email,  @mniam.user%> | <b>Score: (<%= @user.rank =%>)</b> | 
-  <% if user_signed_in? %>
-    <%= link_to like_mniam_path(@mniam), method: :put do %>
-      <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-      <%= @mniam.get_upvotes.size %>
-    <% end %> |
-  <%end%> 
-  <span class="label label-success"><%= @mniam.typ %></span> |
-    <span class="label label-success"><%= @mniam.preparation_time %> min <span class="glyphicon glyphicon-time" aria-hidden="true"></span></span> |
-    <span class="label label-success"><%= @mniam.price %> <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></span> |
-    <span class="label label-success"><%= @mniam.difficulty %> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span> 
- </p>
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-body">
 
-<div class="col-md-6">
-  <%= image_tag @mniam.avatar.url, class: "img_show" %>
-  <br>
-  <br>
-</div>
+        <div class="col-md-12">
+          <br>
+            <p> 
+            By: <%= link_to @mniam.user.email,  @mniam.user%> | <b>Score: (<%= @user.rank =%>)</b> | 
+            <% if user_signed_in? %>
+              <%= link_to like_mniam_path(@mniam), method: :put do %>
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                <%= @mniam.get_upvotes.size %>
+              <% end %> |
+            <%end%> 
+            <span class="label label-success"><%= @mniam.typ %></span> |
+              <span class="label label-success"><%= @mniam.preparation_time %> min <span class="glyphicon glyphicon-time" aria-hidden="true"></span></span> |
+              <span class="label label-success"><%= @mniam.price %> <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></span> |
+              <span class="label label-success"><%= @mniam.difficulty %> <span class="glyphicon glyphicon-stats" aria-hidden="true"></span></span> 
+           </p>
+        </div>
 
-<div class="col-md-6">
-  <h2><%= @mniam.title %></h2>
-  <br>
-  <p><%= @mniam.description %></p>
-</div>
+        <div class="col-md-6">
+          <%= image_tag @mniam.avatar.url, class: "img_show" %>
+          <br>
+          <br>
+        </div>
 
-  <div class="col-md-6">
-    <div id="ingredients">
-      <h2>Ingredients</h2>
-      <ul>
-        <% @mniam.ingredients.each do |ingredient| %>
-          <li>
-            <%= ingredient.name %>
-          </li>
-        <% end %>
-      </ul>
+        <div class="col-md-6">
+          <h2><%= @mniam.title %></h2>
+          <br>
+          <p><%= @mniam.description %></p>
+        </div>
+
+        <div class="col-md-6">
+          <div id="ingredients">
+            <h2>Ingredients</h2>
+            <ul>
+              <% @mniam.ingredients.each do |ingredient| %>
+                <li>
+                  <%= ingredient.name %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+         <%= social_share_button_tag(@mniam.title) %>
+        </div>
+
+        <div class="col-md-6">
+          <h4>Related mniams</h4>
+            <% @mniam.related(@mniam).each do |f| %>
+                  <%= link_to (image_tag f.avatar.url(:medium), class: "img_related"),f  %>
+            <% end %>
+        </div>
+
+
+        <div class="col-md-6">
+          <div id="directions">
+            <h2>Directions</h2>
+            <ul>
+              <% @mniam.directions.each do |direction| %>
+                <li>
+                  <%= direction.step %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <hr>
+            <%= link_to "Back", :back, class: "btn btn-default" %> |
+            <div class="btn-group">
+            <a href="#" class="btn btn-primary">Options</a>
+            <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+            <% if @mniam.user == current_user  or current_user.admin? %>
+              <li><%= link_to "Edit", edit_mniam_path(@mniam)%></li>
+              <li><%= link_to "Delete", mniam_path, method: :delete, data:{confirm: "Are you sure?"} %></li>
+              <li class="divider"></li>
+            <%end%>
+            <% if current_user %>
+              <li><%= link_to "Favorite+", favorite_mniam_path(@mniam, type: "favorite"), method: :put%></li>
+            <% end %>
+            <li><%= link_to "Create PDF", show_path(@mniam, :format => :pdf)%></li>
+            </ul>
+          </div>
+          <br>
+        </div>
+
+        <div class="col-md-12">
+        <br>
+        <h4><b>Comments (<%= @mniam.comments.count %>)</b></h4>
+          Add a comment!
+          <%= form_for @comment do |f| %>
+            <% if @comment.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+                <ul>
+                  <% @comment.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <%= f.hidden_field :mniam_id %>
+            <%= f.hidden_field :user_id %>
+            <%= f.hidden_field :parent_id %>
+
+            <div class="form-group">
+              <%= f.text_area :body, class: 'form-control', required: true %>
+            </div>
+            
+            <%= f.submit class: 'btn btn-primary' %>
+          <% end %>
+          <br>
+          <%= comments_tree_for @comments %>
+        </div>
+      </div>
     </div>
   </div>
-
-<div class="col-md-12">
- <%= social_share_button_tag(@mniam.title) %>
 </div>
-
-<div class="col-md-6">
-<h4>Related mniams</h4>
-  <% @mniam.related(@mniam).each do |f| %>
-        <%= link_to (image_tag f.avatar.url(:medium), class: "img_related"),f  %>
-  <% end %>
-</div>
-
-
-  <div class="col-md-6">
-    <div id="directions">
-      <h2>Directions</h2>
-      <ul>
-        <% @mniam.directions.each do |direction| %>
-          <li>
-            <%= direction.step %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-
-<div class="col-md-12">
-<hr>
-  <%= link_to "Back", :back, class: "btn btn-default" %> |
-  <div class="btn-group">
-  <a href="#" class="btn btn-primary">Options</a>
-  <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></a>
-  <ul class="dropdown-menu">
-  <% if @mniam.user == current_user  or current_user.admin? %>
-    <li><%= link_to "Edit", edit_mniam_path(@mniam)%></li>
-    <li><%= link_to "Delete", mniam_path, method: :delete, data:{confirm: "Are you sure?"} %></li>
-    <li class="divider"></li>
-  <%end%>
-  <% if current_user %>
-    <li><%= link_to "Favorite+", favorite_mniam_path(@mniam, type: "favorite"), method: :put%></li>
-  <% end %>
-  <li><%= link_to "Create PDF", show_path(@mniam, :format => :pdf)%></li>
-  </ul>
-</div>
-<br>
-</div>
-
-<div class="col-md-12">
-<br>
-<h4><b>Comments (<%= @mniam.comments.count %>)</b></h4>
-Add a comment!
-<%= form_for @comment do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-        <% @comment.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.hidden_field :mniam_id %>
-  <%= f.hidden_field :user_id %>
-  <%= f.hidden_field :parent_id %>
-  <div class="form-group">
-    
-    <%= f.text_area :body, class: 'form-control', required: true %>
-  </div>
-  
-
-  <%= f.submit class: 'btn btn-primary' %>
-<% end %>
-<br>
-<%= comments_tree_for @comments %>
-</div>
-</div>
-</p>
-

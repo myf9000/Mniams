@@ -83,7 +83,7 @@ class MniamsController < ApplicationController
     type = params[:type]
     if type == "favorite"
         current_user.favorites << @mniam
-        redirect_to :back, notice: 'You favorited this mniams'
+        redirect_to mniams_favorite_list_path, notice: 'You favorited this mniams'
     elsif type == "unfavorite"
       current_user.favorites.delete(@mniam)
       redirect_to :back, notice: 'Unfavorited this mnians'

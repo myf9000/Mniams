@@ -1,8 +1,13 @@
 <% provide(:title, "Contact" ) %>
 
-<div class="col-md-8 col-md-offset-2">
-<div class="jumbotron">
-  <div class="container-fluid">
+
+<div class="col-md-12">
+      <p style="text-align:center"><%= image_tag('send.png')%></p>
+    </div>
+    
+<div class="col-md-8 col-md-offset-2"> 
+<div class="panel panel-default">
+  <div class="panel-body">
     <div class="row">
     <%= simple_form_for @contact, html: { multipart: true } do |f| %>
 

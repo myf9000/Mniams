@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
   end
 
   def About
+  	render :layout=> "layout_for_about"
   end
 
   def Contact

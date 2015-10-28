@@ -1,33 +1,38 @@
 <% provide(:title, "Tips") %>
+
 <div class="col-md-10 col-md-offset-1">
-<%= render 'filter_form' %>
-<hr>
-<h4>Tips (<%= @tips.count %>)</h4>
-<% @tips.each do |f| %>
-<table class="table table-striped table-hover ">
-<div class="row">
-    <tbody>
-    <tr class="success">
-    <td>
-    <div class="col-md-12">
-    <br>
-    	<p>
-	    	Created at: <%= link_to f.user.email,  f.user, class: "aaa"%> | 		
-	    	<span class="label label-primary"><%= f.category %> <span class="glyphicon glyphicon-flag" aria-hidden="true"></span></span> | <%= f.get_upvotes.size %>
-		</p>
+    <%= render 'filter_form' %>
+    <hr>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h4>Tips (<%= @tips.count %>)</h4>
+
+        <% @tips.each do |f| %>
+        <table class="table table-striped table-hover ">
+        <div class="row">
+            <tbody>
+            <tr class="success">
+                <td>
+                    <div class="col-md-12">
+                    <br>
+                    	<p>
+                	    	Created at: <%= link_to f.user.email,  f.user, class: "aaa"%> | 		
+                	    	<span class="label label-primary"><%= f.category %> <span class="glyphicon glyphicon-flag" aria-hidden="true"></span></span> | <%= f.get_upvotes.size %>
+                		</p>
+                    </div>
+                    <div class="col-md-9">
+                    	<h3><%= f.title %></h3>
+                    </div>
+                    
+                    <div class="col-md-3">
+                    	<%= link_to "Watch Movie", f, class: "btn btn-primary" %>
+                    </div>
+             	</td>
+            </tr>
+            </tbody>
+        </table>
+        <% end %>
     </div>
-    <div class="col-md-9">
-    	<h3><%= f.title %></h3>
-    </div>
-    
-    <div class="col-md-3">
-    	<%= link_to "Watch Movie", f, class: "btn btn-primary" %>
-    </div>
- 	</td>
-    </tr>
-    </tbody>
-    </table>
-    <% end %>
-    </div>
+</div>
 </div>
 <%= will_paginate @tips %>

@@ -1,6 +1,26 @@
 <% provide(:title, "About") %>
-
-<div class="jumbotron">
-<h1>About app</h1>
-<p>	This app is a little help for people with prepare Mmm meals </p>
+<div class="col-md-12">
+      <p style="text-align:center"><%= image_tag('recipe.png')%></p>
+    </div>
+<div class="about">
+<hr>
+    <div style="text-align:center; font-style: monaco;color: #2c3e50; ">
+    
+    <hr>
+      <b><h1>This App is for us!</h1>
+      <p>Help us create the best meals on the planet!</p>
+      <hr>
+      <p><%= link_to "Show Mniams", root_path, class: "btn btn-primary" %> </b>
+      <%= link_to "Show Tips", tips_path, class: "btn btn-primary" %> </p>
+      <hr>
+      <p> Add your recipe, movie, comments </p>
+      <p>follow users, add to favorit list, vote for the best meals</p>
+      <p>search recipe, tips, personalize your account, create PDF to easy use witch kitchen </p>
+      <p>share mmniams with friends, with all the world and UFO's</p>
+      <p>talk with other user and <b>DISCOVER</b> the best taste for you!</p>
+      <br>
+      <br>
+      <p><b>Recipe Mmm was created by: <%= link_to image_tag('myf900.png'), root_path %></b></p>
+      <br>
+    </div>
 </div>
