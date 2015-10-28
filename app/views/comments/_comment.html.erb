@@ -1,10 +1,10 @@
 <div class="well">
-  <p class="text-muted"><%= comment.root? ? "Started by" : "Replied by" %> <strong><%= comment.author %></strong> on
+  <p class="text-muted"><%= comment.root? ? "Started by" : "Replied by" %> <strong><%= link_to comment.author, user_path(comment.user_id) %></strong> on
     <%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></p>
 
-  <blockquote>
-    <p><%= comment.body %></p>
-  </blockquote>
+        <blockquote> <%= comment.body %> </blockquote>
+      
+
  <% from_reply_form ||= nil %>
 <% unless from_reply_form %>
   <% if comment.leaf? %>
