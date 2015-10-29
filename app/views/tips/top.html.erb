@@ -18,7 +18,7 @@
     <br>
     	<p>
 	    	Created at: <%= link_to f.user.email,  f.user, class: "aaa"%> | 		
-	    	<%= link_to filtering_tips_path(f.category) do %> <span class="label label-primary"><%= f.category %> <span class="glyphicon glyphicon-flag" aria-hidden="true"></span></span><%end%>  |  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <%= f.get_upvotes.size %>
+	    	<%= link_to filtering_tips_path(f.category) do %> <span class="label label-primary"><%= f.category %> <span class="glyphicon glyphicon-flag" aria-hidden="true"></span></span><%end%>  |  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> (<%= f.get_upvotes.size %>)
 		</p>
     </div>
     <div class="col-md-9">
