@@ -11,7 +11,7 @@
 					<br>
 					<p>
 			    	Created at: <%= link_to @tip.user.email,  @tip.user%> | 		
-			    	<%= link_to filtering_tips_path(@tip.category) do %> <span class="label label-success"><%= @tip.category %> <%end%>| 
+			    	<%= link_to filtering_tips_path(@tip.category) do %> <span class="label label-success"><%= @tip.category %> <span class="glyphicon glyphicon-flag" aria-hidden="true"></span></span><%end%> | 
 					  <% if user_signed_in? %>
 					    <%= link_to like_tip_path(@tip), method: :put do %>
 					      <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
