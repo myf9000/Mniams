@@ -74,6 +74,17 @@ class TipsController < ApplicationController
     redirect_to :back, notice: "You like this Tip :)"
   end 
 
+  def filtering_tips
+    if params[:id]
+      @tips = Tip.all
+      @tips = @tips.select do |f| 
+        if f.category == params[:id]
+          f
+        end
+      end
+    end
+  end
+
   private
 
   def set_movie
