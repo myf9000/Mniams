@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030160327) do
+ActiveRecord::Schema.define(version: 20151030161651) do
 
   create_table "comment_hierarchies", id: false, force: :cascade do |t|
     t.integer "ancestor_id",   null: false
@@ -183,8 +183,9 @@ ActiveRecord::Schema.define(version: 20151030160327) do
     t.string   "slug"
     t.integer  "rank"
     t.text     "desc"
-    t.string   "confirmable"
     t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
