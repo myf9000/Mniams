@@ -3,10 +3,10 @@ class ContactsController < ApplicationController
 		@contact = Contact.new
 	end
 
-	def create
+	def create	
 		@contact = Contact.new(params[:contact])
 		@contact.request = request
-		if @contact.deliver
+		if verify_recaptcha(:contact => @contact) && @contact.deliver
 			flash.now[:success]= "You send message"
 		else 
 			flash.now[:error]= "Cannot send message"

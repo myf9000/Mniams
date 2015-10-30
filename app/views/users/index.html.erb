@@ -39,15 +39,16 @@
           <ul class="media-list">
             <% @conversations.each do |conversation| %>
                 <li class="media">
-                  <%= image_tag(User.find(conversation.recipient_id).user_avatar.url, class: "img_related media-object pull-left") %>
-                  <div class="media-body">
-                  <%=User.find(conversation.recipient_id).email%>  
-                    <%= link_to "Reply", conversation_path(conversation), class: "conversation", "data-cid" => conversation.id %>
+                  <% if User.find_by id: conversation.recipient_id %>
+                      <%= image_tag(User.find(conversation.recipient_id).user_avatar.url, class: "img_related media-object pull-left") %>
+                      <div class="media-body">
+                        <%=User.find(conversation.recipient_id).email%>  
+                        <%= link_to "Reply", conversation_path(conversation), class: "conversation", "data-cid" => conversation.id %>
                         <h4 class="media-heading"><%= conversation_interlocutor(conversation).name %></h4>
                         <p><%= conversation.messages.last.nil? ? "No messages" : truncate(conversation.messages.last.body, length: 45) %></p>
-                  </div>
+                      </div> 
+                  <% end %>
                 </li>
-
             <% end %>
           </ul>
       <% else %>

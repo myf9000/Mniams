@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       put "like", to: "tips#upvote"
     end
   end
-  devise_for :users do
+  devise_for :users, controllers: { registrations: 'registrations' } do
   delete "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
 end
 get 'top/tips' => 'tips#top', :as => :top_tips
@@ -27,6 +27,7 @@ get 'top/tips' => 'tips#top', :as => :top_tips
       get :following, :followers
     end
   end
+
 
   get 'static_pages/News'
 

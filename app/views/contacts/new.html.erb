@@ -24,10 +24,9 @@
       <%= f.text_area :message, class: 'form-control', rows: 8%>
     </div>
     
-    <div class="hidden">
-      <div class="col-md-6">
-        <%= f.input :nickname, hint: 'leave this field blank' %>
-      </div>
+    <div class="col-md-12">
+    <br>
+      <%= raw recaptcha_tags %>
     </div>
 
     <div class="col-md-12">
